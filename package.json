@@ -19,7 +19,11 @@
     "url": "https://github.com/niiknow/lambda-pdfxs3.git"
   },
   "dependencies": {
+    "async": "^2.6.1",
     "debug": "^4.1.0",
+    "got": "^9.3.2",
+    "mkdirp": "^0.5.1",
+    "recursive-readdir-sync": "^1.0.6",
     "source-map-support": "^0.5.9",
     "temp": "^0.8.3",
     "uuid": "^3.3.2"
