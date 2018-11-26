@@ -1,0 +1,51 @@
+{
+  "name": "lambda-pdfxs3",
+  "version": "0.1.0",
+  "description": "Monitor some s3 bucket for pdf upload and extract to another bucket",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "sls deploy && sls s3deploy",
+    "deploy-prod": "sls deploy --stage prod && sls s3deploy --stage prod",
+    "lint": "eslint --ext .js,.jsx ./",
+    "lint-fix": "eslint --fix --ext .js,.jsx ./",
+    "serverless": "node_modules/.bin/serverless",
+    "sls": "node_modules/.bin/serverless",
+    "service-info": "sls info"
+  },
+  "author": "Tom Noogen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niiknow/lambda-pdfxs3.git"
+  },
+  "dependencies": {
+    "debug": "^4.1.0",
+    "source-map-support": "^0.5.9",
+    "temp": "^0.8.3",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.1.5",
+    "aws-sdk": "^2.361.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-source-map-support": "^2.0.1",
+    "copy-webpack-plugin": "^4.6.0",
+    "cross-env": "^5.1.6",
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.27.2",
+    "jest": "^23.6.0",
+    "serverless": "^1.33.2",
+    "serverless-offline": "^3.31.3",
+    "serverless-plugin-existing-s3": "^2.2.2",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.26.0",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
