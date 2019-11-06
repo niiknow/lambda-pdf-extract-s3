@@ -10,7 +10,7 @@ import doTransform from './doTransform'
 const debug = require('debug')('lambda-pdfxs3')
 
 const cfg = {
-  basepath: '/tmp/pdf',
+  localpath: (process.env.LOCALPATH || '/tmp/pdf').replace(/\/+$/, ''),
   cmd: './index.sh'
 }
 
@@ -34,22 +34,25 @@ export default ( event, callback ) => {
 
   params.dest = ( params.dest || destPath ) + ''
 
-  // prefix with basepath: /tmp/pdf
-  destPath = `${cfg.basepath}/${params.dest}`
+  // prefix with localpath: /tmp/pdf
+  destPath = `${cfg.localpath}/${params.dest}`
 
   // use pdf file name as path and download as index.pdf
-  params.dest = `${destPath}/${fileName}/`.replace( '.pdf', '/' ).replace( /\/+/gi, '/' )
+  params.local = `${destPath}/${fileName}`.trim().slice(0, -4).replace(/\/+/gi, '/') + '/'
 
   // generate shell exec string
-  params.cmd = `"${cfg.cmd}" "${params.dpi}" "${params.dest}" ${params.width} "${legacyName}.jpg"`
+  params.cmd = `"${cfg.cmd}" "${params.dpi}" "${params.local}" ${params.width} "${legacyName}.jpg"`
+
+  // generate new dest path
+  params.dest = `${params.dest}/${fileName}`.trim().slice(0, -4).replace(/\/+/gi, '/')
 
   // make directory before download
-  mkdirp.sync( params.dest )
+  mkdirp.sync( params.local )
 
-  debug(params)
+  debug('Downloading...', JSON.stringify(params, null, 2))
 
   got.stream(params.url)
-    .pipe(fs.createWriteStream(params.dest + 'index.pdf'))
+    .pipe(fs.createWriteStream(params.local + 'index.pdf'))
     .on('close', async () => {
       try {
         await doTransform(params)

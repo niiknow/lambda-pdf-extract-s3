@@ -1,23 +1,25 @@
 import fs from 'fs'
+import path from 'path'
 import AWS from 'aws-sdk'
 
 const s3                = new AWS.S3()
 const asynk             = require( 'async' )
 const recursiveReadSync = require( 'recursive-readdir-sync' )
 
-
 const debug = require('debug')('lambda-pdfxs3')
 const cfg = {
-  basepath: '/tmp/pdf',
-  bucket: 'brick-web'
+  localpath: (process.env.LOCALPATH || '/tmp/pdf').replace(/\/+$/, ''),
+  bucket: process.env.DESTBUCKET
 }
 
 export default async ( event, callback ) => {
   let files = [],
     rstFiles = []
 
+  debug('Starting upload process...', JSON.stringify(event, null, 2))
+
   try {
-    files = recursiveReadSync( `${cfg.basepath}/` )
+    files = recursiveReadSync( `${cfg.localpath}/` )
   } catch ( err ) {
     files = []
     return callback( err )
@@ -31,14 +33,14 @@ export default async ( event, callback ) => {
   debug( 'begin upload to bucket: ', cfg.bucket )
 
   const q = asynk.queue( ( f, cb ) => {
-    const myKey = f.replace( '/tmp/', '' )
+    const myKey = `${event.dest}/${path.basename(f)}`
     const myParms = {
       Bucket: cfg.bucket,
       Key: myKey,
       Body: fs.createReadStream(f)
     }
 
-    debug(`uploading: ${myKey}`)
+    debug(`uploading to ${cfg.bucket}@${myKey}`)
 
     s3.upload(myParms, cb)
     rstFiles.push( myKey )
@@ -51,7 +53,7 @@ export default async ( event, callback ) => {
 
     const rst = {
       success: true,
-      path: event.dest.replace( `${cfg.basepath}/`, '' ),
+      path: event.dest,
       files: rstFiles
     }
 
@@ -62,7 +64,7 @@ export default async ( event, callback ) => {
   q.error((err, task) => {
     const rst = {
       success: false,
-      path: event.dest.replace( '/tmp/', '' ),
+      path: event.dest,
       files: rstFiles
     }
 
