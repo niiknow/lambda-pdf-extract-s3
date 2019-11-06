@@ -18,7 +18,7 @@ export default ( event, callback ) => {
   const params = event.queryStringParameters || {}
 
   if ( !/^(http|https):\/\//gmi.test( params.url ) ) {
-    return context.fail( 'URL is invalid.' )
+    return callback( 'URL is invalid.' )
   }
 
   params.dpi = parseInt( params.dpi || 72 )

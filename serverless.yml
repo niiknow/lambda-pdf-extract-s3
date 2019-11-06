@@ -47,8 +47,15 @@ package:
     - build-*.sh
 
 functions:
-  pdfHandler:
-    handler: handler.pdfHandler
+  extractHandler:
+    handler: handler.extractHandler
+    events:
+      - http:
+            method: get
+            path: pdfxs3
+
+  s3Handler:
+    handler: handler.s3Handler
     events:
       - existingS3:
             bucket: ${file(env.yml):${self:provider.stage}.FROMBUCKET}
