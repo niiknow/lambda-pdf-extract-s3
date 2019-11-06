@@ -1,3 +1,4 @@
+import fs from 'fs'
 import AWS from 'aws-sdk'
 
 const s3                = new AWS.S3()
@@ -8,10 +9,10 @@ const recursiveReadSync = require( 'recursive-readdir-sync' )
 const debug = require('debug')('lambda-pdfxs3')
 const cfg = {
   basepath: '/tmp/pdf',
-  bucket: process.env.DESTBUCKET || process.env.FROMBUCKET
+  bucket: 'brick-web'
 }
 
-export default async ( event, context, callback ) => {
+export default async ( event, callback ) => {
   let files = [],
     rstFiles = []
 
@@ -30,33 +31,47 @@ export default async ( event, context, callback ) => {
   debug( 'begin upload to bucket: ', cfg.bucket )
 
   const q = asynk.queue( ( f, cb ) => {
-    const myKey   = f.replace( '/tmp/', '' )
+    const myKey = f.replace( '/tmp/', '' )
     const myParms = {
       Bucket: cfg.bucket,
       Key: myKey,
-      Body: f
+      Body: fs.createReadStream(f)
     }
+
+    debug(`uploading: ${myKey}`)
 
     s3.upload(myParms, cb)
     rstFiles.push( myKey )
   }, 10 );
 
-  q.drain = ( err ) => {
+  q.drain(( err ) => {
     if ( err ) {
       return callback( err )
     }
 
-    var rst = {
+    const rst = {
       success: true,
-      path: event.dest.replace( '/tmp/', '' ),
+      path: event.dest.replace( `${cfg.basepath}/`, '' ),
       files: rstFiles
     }
 
     callback( null, JSON.stringify( rst, null, 2 ) )
-  }
+  })
 
-  let i = 0
-  for( i = 0; i < files.length; i++ ) {
-    q.push( files[ i ] )
-  }
+  // assign an error callback
+  q.error((err, task) => {
+    const rst = {
+      success: false,
+      path: event.dest.replace( '/tmp/', '' ),
+      files: rstFiles
+    }
+
+    callback( err )
+  });
+
+  files.forEach((v) => {
+    if (v.toLowerCase().indexOf('.ds_store') < 0) {
+      q.push( v )
+    }
+  })
 }

@@ -18,8 +18,10 @@ export default (rsp, callback) => {
       return callback(null, rst)
     }
 
-    rsp.writeHead(code, headers || rspHeaders)
-    rsp.write(body)
-    rsp.end()
+    if (rsp) {
+      rsp.writeHead(code, headers || rspHeaders)
+      rsp.write(body)
+      rsp.end()
+    }
   }
 }

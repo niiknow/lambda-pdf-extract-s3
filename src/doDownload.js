@@ -6,17 +6,15 @@ import mkdirp from 'mkdirp'
 
 import doUpload from './doUpload'
 import doTransform from './doTransform'
-import res from './response'
 
 const debug = require('debug')('lambda-pdfxs3')
 
 const cfg = {
   basepath: '/tmp/pdf',
-  cmd: './bin/index.sh'
+  cmd: './index.sh'
 }
 
-export default async ( event, context, callback ) => {
-  const rspHandler = res(context, callback)
+export default ( event, callback ) => {
   const params = event.queryStringParameters || {}
 
   if ( !/^(http|https):\/\//gmi.test( params.url ) ) {
@@ -43,29 +41,32 @@ export default async ( event, context, callback ) => {
   params.dest = `${destPath}/${fileName}/`.replace( '.pdf', '/' ).replace( /\/+/gi, '/' )
 
   // generate shell exec string
-  params.cmd = `${cfg.cmd} "${event.dpi}" "${event.dest}" ${event.width} "${legacyName}.jpg"`
+  params.cmd = `"${cfg.cmd}" "${params.dpi}" "${params.dest}" ${params.width} "${legacyName}.jpg"`
 
   // make directory before download
   mkdirp.sync( params.dest )
 
-  await got.stream(params.url)
+  debug(params)
+
+  got.stream(params.url)
     .pipe(fs.createWriteStream(params.dest + 'index.pdf'))
     .on('close', async () => {
       try {
-        await doTransform(event)
+        await doTransform(params)
 
         // do upload if no error
-        doUpload( event, context, ( err ) => {
+        doUpload( params, ( err ) => {
           if (err) {
             debug( 'Error during upload', err )
-            return rspHandler( 'Error during uploading.', 422 )
+            return callback( 'Error during uploading.', 422 )
           }
 
-          return rspHandler( 'Success.', 200 )
+          return callback( 'Success.', 200 )
         })
       } catch(e) {
         debug( 'Error during transform', e )
-        return rspHandler( 'Error during transform.', 422 )
+        return callback( 'Error during transform.', 422 )
       }
     })
+
 }

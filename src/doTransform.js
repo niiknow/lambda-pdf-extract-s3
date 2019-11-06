@@ -1,7 +1,7 @@
 const debug = require('debug')('lambda-pdfxs3')
-const exec  = require( 'child_process' ).exec
+const { exec }  = require('child_process')
 
-export default async ( event ) => {
+export default ( event ) => {
   debug( 'executing: ', event.cmd )
 
   return new Promise((resolve, reject) => {
