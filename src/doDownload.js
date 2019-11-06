@@ -11,7 +11,8 @@ import res from './response'
 const debug = require('debug')('lambda-pdfxs3')
 
 const cfg = {
-  basepath: '/tmp/pdf'
+  basepath: '/tmp/pdf',
+  cmd: './bin/index.sh'
 }
 
 export default async ( event, context, callback ) => {
@@ -42,7 +43,7 @@ export default async ( event, context, callback ) => {
   params.dest = `${destPath}/${fileName}/`.replace( '.pdf', '/' ).replace( /\/+/gi, '/' )
 
   // generate shell exec string
-  params.cmd = `./index.sh "${event.dpi}" "${event.dest}" ${event.width} "${legacyName}.jpg"`
+  params.cmd = `${cfg.cmd} "${event.dpi}" "${event.dest}" ${event.width} "${legacyName}.jpg"`
 
   // make directory before download
   mkdirp.sync( params.dest )

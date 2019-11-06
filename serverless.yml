@@ -43,7 +43,8 @@ package:
     - .git/**
     - .DS_*
     - docker*.yml
-    - run-*.sh
+    - Dockerfile
+    - build-*.sh
 
 functions:
   pdfHandler:

@@ -97,9 +97,9 @@ rsync -av ${VBuild}/usr/local/share/poppler ${VBuild}/pkg/share/
 
 popd
 
-tar -C ${VBuild}/pkg -zcvf ${VBuild}/tar/poppler.tar.gz .
+mv ${VBuild}/pkg/lib ${VBuild}/pkg/bin
+mv ${VBuild}/pkg/share ${VBuild}/pkg/bin
 
-echo "!\bin/bash\nrsync -av /build/tar/*.* /output/\n" > /copy.sh
-chmod +x /copy.sh
+tar -C ${VBuild}/pkg -zcvf ${VBuild}/tar/poppler.tar.gz .
 
 #aws s3 cp ~/tmp/tar/poppler.tar.gz s3://"${S3BUCKET}"/poppler.tar.gz

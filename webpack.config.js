@@ -20,7 +20,7 @@ module.exports = {
     hints: false,
   },
   plugins: [
-    new CopyWebpackPlugin(['forms/**', 'templates/**'])
+    new CopyWebpackPlugin(['bin/**','poppler/**'])
   ],
   // Run babel on all .js files and skip those in node_modules
   module: {

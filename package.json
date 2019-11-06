@@ -1,16 +1,17 @@
 {
   "name": "lambda-pdfxs3",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Monitor some s3 bucket for pdf upload and extract to another bucket",
   "main": "handler.js",
   "scripts": {
-    "deploy": "sls deploy && sls s3deploy",
-    "deploy-prod": "sls deploy --stage prod && sls s3deploy --stage prod",
-    "lint": "eslint --ext .js,.jsx src/",
-    "lint-fix": "eslint --fix --ext .js,.jsx src/",
     "serverless": "node_modules/.bin/serverless",
     "sls": "node_modules/.bin/serverless",
-    "service-info": "sls info"
+    "deploy": "npm run lint && sls deploy --stage prod",
+    "service-info": "sls info --stage prod",
+    "lint": "eslint --ext .js,.jsx ./",
+    "lint-fix": "eslint --fix --ext .js,.jsx ./",
+    "local": "cross-env DEBUG=lambda-pdfxs3 SLS_DEBUG=* node_modules/.bin/serverless offline --stage dev",
+    "test": "cross-env DEBUG=lambda-pdfxs3 jest -t"
   },
   "author": "Tom Noogen",
   "license": "MIT",
@@ -24,8 +25,7 @@
     "got": "^9.6.0",
     "mkdirp": "^0.5.1",
     "recursive-readdir-sync": "^1.0.6",
-    "source-map-support": "^0.5.16",
-    "temp": "^0.9.1"
+    "source-map-support": "^0.5.16"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
