@@ -1,9 +1,8 @@
-
 const debug = require('debug')('lambda-pdfxs3')
 const exec  = require( 'child_process' ).exec
 
 export default async ( event ) => {
-  debug( 'executing: ', event.cmd );
+  debug( 'executing: ', event.cmd )
 
   return new Promise((resolve, reject) => {
     const child = exec(event.cmd, ( error ) => {
@@ -12,7 +11,7 @@ export default async ( event ) => {
         return reject(error)
       }
 
-      resolve( 'Process complete!' );
+      resolve( 'Process complete!' )
     })
 
     // Log process stdout and stderr

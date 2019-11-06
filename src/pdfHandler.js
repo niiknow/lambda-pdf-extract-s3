@@ -1,3 +1,4 @@
+import path from 'path'
 import AWS from 'aws-sdk'
 import doDownload from './doDownload'
 
@@ -9,23 +10,25 @@ const debug = require('debug')('lambda-pdfxs3')
  *
  * @param  object     event
  * @param  object     context
- * @param  Function   callback
  */
-export default (event, context, callback) => {
+export default async (event, context) => {
   debug(JSON.stringify(event))
   const s3Object = event.Records[0].s3
+  const bucket   = s3Object.s3.bucket.name
+  const key      = decodeURIComponent(s3Object.object.key.replace( /\+/g, ' ' ))
   const params = {
     Bucket: s3Object.bucket.name,
-    Key: decodeURIComponent(s3Object.object.key.replace( /\+/g, ' ' )),
+    Key: key,
     Expires: 600
   }
-  const url = s3signer.getSignedUrl( 'getObject', params )
-  let basePath = path.dirname( '/' + key )
-  const params = {
+  const url      = s3.getSignedUrl('getObject', params )
+  const basePath = path.dirname( '/' + key )
+  const mysq     = {
     url: url,
     dpi: 72,
     dest: `${bucket}${basePath}`
   }
-  event.queryStringParameters = params
-  doDownload(event, context, callback)
-};
+  event.queryStringParameters = mysq
+
+  await doDownload(event, context)
+}

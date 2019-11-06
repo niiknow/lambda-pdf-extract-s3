@@ -1,3 +1,3 @@
-import pdf from './lib/pdfHandler'
+import pdf from './src/pdfHandler'
 
 export const pdfHandler = pdf

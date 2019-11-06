@@ -6,8 +6,8 @@
   "scripts": {
     "deploy": "sls deploy && sls s3deploy",
     "deploy-prod": "sls deploy --stage prod && sls s3deploy --stage prod",
-    "lint": "eslint --ext .js,.jsx ./",
-    "lint-fix": "eslint --fix --ext .js,.jsx ./",
+    "lint": "eslint --ext .js,.jsx src/",
+    "lint-fix": "eslint --fix --ext .js,.jsx src/",
     "serverless": "node_modules/.bin/serverless",
     "sls": "node_modules/.bin/serverless",
     "service-info": "sls info"
