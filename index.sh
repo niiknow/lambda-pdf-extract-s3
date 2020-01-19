@@ -6,7 +6,7 @@ width=$3
 filename=$4
 base_exec="$cwd/poppler/bin/"
 
-if [ "$(uname)" == "Darwin" ]; then
+if [ "$(uname)" -eq "Darwin" ]; then
   base_exec=""
 fi
 
@@ -16,8 +16,11 @@ cd "$work_dir"
 
 # echo $(pwd)
 
+if [ "1000" -ne "$width" ]; then
+  ${base_exec}pdftoppm -jpeg -r $file_dpi -scale-to-x $width -scale-to-y -1 index.pdf "jpeg-$width-page"
+fi
+
 ${base_exec}pdftoppm -jpeg -r $file_dpi -scale-to-x 1000 -scale-to-y -1 index.pdf jpeg-1000-page
-${base_exec}pdftoppm -jpeg -r $file_dpi -scale-to-x $width -scale-to-y -1 index.pdf "jpeg-$width-page"
 ${base_exec}pdftohtml -p -xml -hidden index.pdf
 ${base_exec}pdftoppm -r $file_dpi index.pdf ppm-page
 if [ -f "jpeg-1000-page-01.jpg " ]; then
