@@ -62,5 +62,5 @@ functions:
             events:
               - s3:ObjectCreated:*
             rules:
-              - prefix: uploads/
+              - prefix: circ/
               - suffix: .pdf

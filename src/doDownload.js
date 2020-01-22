@@ -27,7 +27,7 @@ export default ( event, callback ) => {
   const opt        = urlParse.parse( params.url, true )
   const pathName   = decodeURIComponent( opt.pathname )
 
-  let destPath   = path.dirname( pathName )
+  let destPath     = path.dirname( pathName )
 
   const fileName   = pathName.replace( destPath + '/', '' )
   const legacyName = path.basename( fileName ).toLowerCase().replace('.pdf', '')

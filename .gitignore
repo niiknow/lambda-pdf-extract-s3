@@ -58,6 +58,4 @@ tests/*config.json
 docker-compose.yml
 poppler/*.tar.gz
 
-.serverless.yml
-
 
