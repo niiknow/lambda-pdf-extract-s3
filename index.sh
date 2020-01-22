@@ -6,7 +6,7 @@ width=$3
 filename=$4
 base_exec="$cwd/poppler/bin/"
 
-if [ "$(uname)" -eq "Darwin" ]; then
+if [ "$(uname)" = "Darwin" ]; then
   base_exec=""
 fi
 
@@ -16,7 +16,7 @@ cd "$work_dir"
 
 # echo $(pwd)
 
-if [ "1000" -ne "$width" ]; then
+if [ "1000" != "$width" ]; then
   ${base_exec}pdftoppm -jpeg -r $file_dpi -scale-to-x $width -scale-to-y -1 index.pdf "jpeg-$width-page"
 fi
 

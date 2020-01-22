@@ -10,7 +10,7 @@ describe('s3-handler-tests', () => {
           {
             "s3":{
               "bucket":{
-                "name": process.env.DESTBUCKET
+                "name": process.env.FROMBUCKET
               },
               "object":{
                 "key": "pdf-bulk/KCAM_133_p1_080917_4C.pdf"
