@@ -56,8 +56,6 @@ export default ( event, callback ) => {
     .pipe(fs.createWriteStream(params.local + 'index.pdf'))
     .on('close', async () => {
       try {
-        debug('Current dir...', __dirname)
-
         await doTransform(params)
 
         // do upload if no error

@@ -7,7 +7,7 @@ function WebpackPoppler(options) {
 WebpackPoppler.prototype.apply = function (compiler) {
   compiler.plugin('done', () => {
     const permissions = this.options.permissions || '755';
-    const binPath = `${compiler.outputPath}/poppler/bin`;
+    const binPath = `${compiler.outputPath}/bin`;
     fs.readdir(binPath, (err, items) => {
       if (items && items.length > 0) {
         for (let i = 0; i < items.length; i += 1) {

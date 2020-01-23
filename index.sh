@@ -4,14 +4,12 @@ file_dpi=$1
 work_dir=$2
 width=$3
 filename=$4
-base_exec="$cwd/poppler/bin/"
+base_exec="$cwd/bin/"
 
-echo "hi"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:{$base_exec}lib
 
 if [ "$(uname)" = "Darwin" ]; then
   base_exec=""
-else
-  chmod 755 ${base_exec}*
 fi
 
 echo $(pwd)
