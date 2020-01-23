@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 cwd=$(pwd)
 file_dpi=$1
 work_dir=$2
@@ -6,15 +6,19 @@ width=$3
 filename=$4
 base_exec="$cwd/poppler/bin/"
 
+echo "hi"
+
 if [ "$(uname)" = "Darwin" ]; then
   base_exec=""
+else
+  chmod 755 ${base_exec}*
 fi
 
-# echo $(pwd)
+echo $(pwd)
 
 cd "$work_dir"
 
-# echo $(pwd)
+echo $(pwd)
 
 if [ "1000" != "$width" ]; then
   ${base_exec}pdftoppm -jpeg -r $file_dpi -scale-to-x $width -scale-to-y -1 index.pdf "jpeg-$width-page"

@@ -42,6 +42,7 @@ export default ( event, callback ) => {
 
   // generate shell exec string
   params.cmd = `"${cfg.cmd}" "${params.dpi}" "${params.local}" ${params.width} "${legacyName}.jpg"`
+  // params.cmd = cfg.cmd
 
   // generate new dest path
   params.dest = `${params.dest}/${fileName}`.trim().slice(0, -4).replace(/\/+/gi, '/')
@@ -55,6 +56,8 @@ export default ( event, callback ) => {
     .pipe(fs.createWriteStream(params.local + 'index.pdf'))
     .on('close', async () => {
       try {
+        debug('Current dir...', __dirname)
+
         await doTransform(params)
 
         // do upload if no error

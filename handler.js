@@ -1,3 +1,3 @@
-import pdf from './src/pdfHandler'
+import s3handler from './src/s3Handler'
 
-export const pdfHandler = pdf
+export const s3Handler = s3handler

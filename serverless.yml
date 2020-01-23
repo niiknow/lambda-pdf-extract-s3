@@ -3,10 +3,10 @@ service: lambda-pdfxs3
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
   - serverless-webpack
-  - serverless-plugin-existing-s3
   - serverless-offline
 
 # serverless-webpack configuration
+# - this also help fix permission issue: see webpack-poppler
 # Enable auto-packing of external modules
 custom:
   webpack:
@@ -15,7 +15,9 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
+  memorySize: 512 # optional, in MB, default is 1024
+  timeout: 300 # optional, in seconds, default is 6
   stage: ${opt:stage, 'dev'}
   region: us-east-1
   iamRoleStatements:
@@ -31,36 +33,15 @@ provider:
   #
   environment: ${file(env.yml):${self:provider.stage}}
 
-package:
-  exclude:
-    - demo/**
-    - node_modules/**
-    - tests/**
-    - .babelrc
-    - .d*
-    - .e*
-    - .g*
-    - .git/**
-    - .DS_*
-    - docker*.yml
-    - Dockerfile
-    - build-*.sh
-
 functions:
-  extractHandler:
-    handler: handler.extractHandler
-    events:
-      - http:
-            method: get
-            path: pdfxs3
-
   s3Handler:
     handler: handler.s3Handler
     events:
-      - existingS3:
-            bucket: ${file(env.yml):${self:provider.stage}.FROMBUCKET}
-            events:
-              - s3:ObjectCreated:*
-            rules:
-              - prefix: circ/
-              - suffix: .pdf
+      - s3:
+        bucket: ${file(env.yml):${self:provider.stage}.FROMBUCKET}
+        events:
+          - s3:ObjectCreated:*
+        rules:
+          - prefix: circ/
+          - suffix: .pdf
+        existing: true

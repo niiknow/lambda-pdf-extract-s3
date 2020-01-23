@@ -14,7 +14,7 @@ const debug = require('debug')('lambda-pdfxs3')
  * @param  Function   callback the callback
  */
 export default (event, context, callback) => {
-  debug('Being event handling', JSON.stringify(event, null, 2))
+  debug('Begin event...', JSON.stringify(event, null, 2))
   const rspHandler = res(context, callback)
   const s3Object   = event.Records[0].s3
   const bucket     = s3Object.bucket.name

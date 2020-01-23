@@ -1,6 +1,7 @@
 const slsw = require('serverless-webpack')
 const nodeExternals = require('webpack-node-externals')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WebpackPoppler = require('./webpack-poppler.js')
 
 module.exports = {
   entry: slsw.lib.entries,
@@ -20,7 +21,12 @@ module.exports = {
     hints: false,
   },
   plugins: [
-    new CopyWebpackPlugin(['bin/**','poppler/**'])
+    new CopyWebpackPlugin([{
+      from: 'index.sh'
+    },{
+      from: 'poppler/bin/**'
+    }]),
+    new WebpackPoppler()
   ],
   // Run babel on all .js files and skip those in node_modules
   module: {
