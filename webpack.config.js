@@ -24,10 +24,24 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: 'index.sh'
     },{
-      from: 'poppler/bin/**',
+      from: 'poppler/bin/*',
       to: 'bin',
       transformPath: ( targetPath ) => {
         return targetPath.replace( 'poppler/bin/', '' );
+      }
+    },
+    {
+      from: 'poppler/bin/lib/**',
+      to: 'lib',
+      transformPath: ( targetPath ) => {
+        return targetPath.replace( 'poppler/bin/lib/', '' );
+      }
+    },
+    {
+      from: 'poppler/bin/share/**',
+      to: 'share',
+      transformPath: ( targetPath ) => {
+        return targetPath.replace( 'poppler/bin/share/', '' );
       }
     }]),
     new WebpackPoppler()
