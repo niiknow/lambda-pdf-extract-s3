@@ -38,10 +38,9 @@ functions:
     handler: handler.s3Handler
     events:
       - s3:
-        bucket: ${file(env.yml):${self:provider.stage}.FROMBUCKET}
-        events:
-          - s3:ObjectCreated:*
-        rules:
-          - prefix: circ/
-          - suffix: .pdf
-        existing: true
+          bucket: ${file(env.yml):${self:provider.stage}.FROMBUCKET}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: circ/
+            - suffix: .pdf
+          existing: true
