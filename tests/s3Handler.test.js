@@ -6,20 +6,20 @@ describe('s3-handler-tests', () => {
   test('correctly download and process remote pdf file', async () => {
     const rst = await handler(
      {
-       "Records":[
+       'Records':[
           {
-            "s3":{
-              "bucket":{
-                "name": process.env.FROMBUCKET
+            's3':{
+              'bucket':{
+                'name': process.env.FROMBUCKET
               },
-              "object":{
-                "key": "pdf-bulk/KCAM_133_p1_080917_4C.pdf"
+              'object':{
+                'key': 'pdf-bulk/KCAM_133_p1_080917_4C.pdf'
               }
             }
           }
        ]
     })
 
-    expect(rst).toBe("Success.")
+    expect(rst).toBe('Success.')
   })
 })

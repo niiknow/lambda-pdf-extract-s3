@@ -61,15 +61,7 @@ export default async ( event, callback ) => {
   })
 
   // assign an error callback
-  q.error((err, task) => {
-    const rst = {
-      success: false,
-      path: event.dest,
-      files: rstFiles
-    }
-
-    callback( err )
-  });
+  q.error(callback);
 
   files.forEach((v) => {
     if (v.toLowerCase().indexOf('.ds_store') < 0) {

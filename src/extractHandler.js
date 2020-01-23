@@ -1,9 +1,6 @@
-import path from 'path'
-import AWS from 'aws-sdk'
 import doDownload from './doDownload'
 import res from './response'
 
-const s3    = new AWS.S3()
 const debug = require('debug')('lambda-pdfxs3')
 
 /**
