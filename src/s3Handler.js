@@ -19,7 +19,7 @@ export default (event, context, callback) => {
   const s3Object   = event.Records[0].s3
   const bucket     = s3Object.bucket.name
   const key        = decodeURIComponent(s3Object.object.key.replace( /\+/g, ' ' ))
-  const basePath   = path.dirname( '/' + key )
+  const basePath   = path.dirname(key)
   const params     = {
     Bucket: bucket,
     Key: key,
@@ -29,7 +29,7 @@ export default (event, context, callback) => {
   event.queryStringParameters = {
     url: s3.getSignedUrl('getObject', params ),
     dpi: 72,
-    dest: `pdf/${bucket}${basePath}`
+    dest: process.env.DESTBUCKET === 'bucket' ? `${basePath}` : `pdf/${bucket}/${basePath}`
   }
 
   return new Promise((resolve) => {
