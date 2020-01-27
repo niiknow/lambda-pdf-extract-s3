@@ -6,10 +6,6 @@ width=$3
 filename=$4
 base_exec="$cwd/bin/"
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:{$base_exec}lib
-
-echo $LD_LIBRARY_PATH
-
 if [ "$(uname)" = "Darwin" ]; then
   base_exec=""
 fi

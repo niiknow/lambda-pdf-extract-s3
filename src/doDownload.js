@@ -22,7 +22,7 @@ export default ( event, callback ) => {
   }
 
   params.dpi = parseInt( params.dpi || 72 )
-  params.width = parseInt( params.width || 1600 )
+  params.width = parseInt( params.width || 2000 )
 
   const opt        = urlParse.parse( params.url, true )
   const pathName   = decodeURIComponent( opt.pathname )

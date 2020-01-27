@@ -57,5 +57,5 @@ env.yml
 tests/*config.json
 docker-compose.yml
 poppler/*.tar.gz
-
+tests/data/*.json
 

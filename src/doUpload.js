@@ -16,7 +16,7 @@ export default async ( event, callback ) => {
   let files = [],
     rstFiles = []
 
-  debug('Starting upload process...', JSON.stringify(event, null, 2))
+  debug('Starting upload process...', JSON.stringify(event))
 
   try {
     files = recursiveReadSync( `${cfg.localpath}/` )
@@ -24,13 +24,13 @@ export default async ( event, callback ) => {
     files = []
     return callback( err )
   }
-  debug( 'files: ', files.length )
+  debug('Files count...', files.length )
 
   if ( files.length <= 0 ) {
     return callback('Unable to locate any files.')
   }
 
-  debug( 'begin upload to bucket: ', cfg.bucket )
+  debug('Begin upload to bucket...', cfg.bucket)
 
   const q = asynk.queue( ( f, cb ) => {
     const myKey = `${event.dest}/${path.basename(f)}`
@@ -40,14 +40,14 @@ export default async ( event, callback ) => {
       Body: fs.createReadStream(f)
     }
 
-    debug(`uploading to ${cfg.bucket}@${myKey}`)
+    debug(`Uploading to ${cfg.bucket}@${myKey}`)
 
     s3.upload(myParms, cb)
-    rstFiles.push( myKey )
+    rstFiles.push(myKey)
   }, 10 );
 
-  q.drain(( err ) => {
-    if ( err ) {
+  q.drain((err) => {
+    if (err) {
       return callback( err )
     }
 
@@ -57,7 +57,7 @@ export default async ( event, callback ) => {
       files: rstFiles
     }
 
-    callback( null, JSON.stringify( rst, null, 2 ) )
+    callback(null, JSON.stringify(rst))
   })
 
   // assign an error callback
@@ -65,7 +65,7 @@ export default async ( event, callback ) => {
 
   files.forEach((v) => {
     if (v.toLowerCase().indexOf('.ds_store') < 0) {
-      q.push( v )
+      q.push(v)
     }
   })
 }

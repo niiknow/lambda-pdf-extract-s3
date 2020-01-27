@@ -25,7 +25,8 @@
     "got": "^9.6.0",
     "mkdirp": "^0.5.1",
     "recursive-readdir-sync": "^1.0.6",
-    "source-map-support": "^0.5.16"
+    "source-map-support": "^0.5.16",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
