@@ -1,11 +1,9 @@
 import handler from '../src/s3Handler.js'
 
-jest.setTimeout(120000)
+jest.setTimeout(300000)
 
 describe('s3-handler-tests', () => {
   test('correctly download and process remote pdf file', async () => {
-    // comment out below to perform integration tests
-    /*
     const rst = await handler(
      {
        'Records':[
@@ -15,7 +13,7 @@ describe('s3-handler-tests', () => {
                 'name': process.env.FROMBUCKET
               },
               'object':{
-                'key': 'pdf-bulk/KCAM_133_p1_080917_4C.pdf'
+                'key': 'pdf-bulk/claiborne-hill-10-16-17-with-coupon.pdf'
               }
             }
           }
@@ -23,8 +21,5 @@ describe('s3-handler-tests', () => {
     })
 
     expect(rst).toBe('Success.')
-    */
-
-    expect(true).toBe(true)
   })
 })

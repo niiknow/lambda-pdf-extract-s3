@@ -11,7 +11,8 @@
     "lint": "eslint --ext .js,.jsx ./",
     "lint-fix": "eslint --fix --ext .js,.jsx ./",
     "local": "cross-env DEBUG=lambda-pdfxs3 SLS_DEBUG=* node_modules/.bin/serverless offline --stage dev",
-    "test": "cross-env DEBUG=lambda-pdfxs3 jest --detectOpenHandles -t"
+    "test": "cross-env DEBUG=lambda-pdfxs3 jest --detectOpenHandles -t --testPathIgnorePatterns s3Handler.test.js",
+    "test-all": "cross-env DEBUG=lambda-pdfxs3 jest --detectOpenHandles"
   },
   "author": "Tom Noogen",
   "license": "MIT",

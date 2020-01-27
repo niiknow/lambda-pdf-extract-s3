@@ -9,6 +9,6 @@ describe('Converting xml to json', () => {
     const rst = await handler(fullPath)
 
     expect(rst.pdf2xml.$.producer).toBe('poppler')
-    expect(rst.pdf2xml.page.length).toBe(1)
+    expect(rst.pdf2xml.page).toHaveLength(1)
   })
 })

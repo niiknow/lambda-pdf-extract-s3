@@ -31,6 +31,18 @@ describe('Transform xml to fit text to image', () => {
     const rstFile = fullPath.replace('.xml', '-x.json')
     const exists = fs.existsSync(rstFile)
     expect(exists).toBe(true)
+    expect(rst.pages).toHaveLength(1)
+    expect(rst.pages[0].items.length > 1).toBe(true)
+    expect(rst.pages[0].lines.length > 1).toBe(true)
+  })
 
+  test('correctly transform page-multi xml to json', async () => {
+    const fullPath = path.resolve('./tests/data/page-multi.xml');
+    const rst = await handler({ xmlFile: fullPath })
+    const rstFile = fullPath.replace('.xml', '-x.json')
+    const exists = fs.existsSync(rstFile)
+    expect(exists).toBe(true)
+    expect(rst.pages).toHaveLength(8)
+    expect(rst.pages[0].items.length > 1).toBe(true)
   })
 })

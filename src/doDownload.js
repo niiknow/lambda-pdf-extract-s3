@@ -6,6 +6,7 @@ import mkdirp from 'mkdirp'
 
 import doUpload from './doUpload'
 import doTransform from './doTransform'
+import transformXml from './transformXml'
 
 const debug = require('debug')('lambda-pdfxs3')
 
@@ -50,13 +51,19 @@ export default ( event, callback ) => {
   // make directory before download
   mkdirp.sync( params.local )
 
-  debug('Downloading...', JSON.stringify(params, null, 2))
+  debug('Downloading...', JSON.stringify(params))
 
   got.stream(params.url)
-    .pipe(fs.createWriteStream(params.local + 'index.pdf'))
+    .pipe(fs.createWriteStream(path.join(params.local, 'index.pdf')))
     .on('close', async () => {
       try {
         await doTransform(params)
+
+        await transformXml({
+          xmlFile: path.join(params.local, 'index.xml'),
+          saveJson: true,
+          destPath: params.dest
+        })
 
         // do upload if no error
         doUpload( params, ( err ) => {
@@ -72,5 +79,4 @@ export default ( event, callback ) => {
         return callback( 'Error during transform.', 422 )
       }
     })
-
 }
