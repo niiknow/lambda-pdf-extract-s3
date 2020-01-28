@@ -33,4 +33,4 @@ fi
 cp -f index.jpg "$filename"
 
 # finally, rename index pdf to prevent infinit loop of bucket reprocessing
-mv index.pdf index.pdx
+mv -f index.pdf index.pdx

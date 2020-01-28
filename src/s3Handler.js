@@ -29,7 +29,7 @@ export default (event, context, callback) => {
   event.queryStringParameters = {
     url: s3.getSignedUrl('getObject', params ),
     dpi: 72,
-    dest: process.env.DESTBUCKET === 'bucket' ? `${basePath}` : `pdf/${bucket}/${basePath}`
+    dest: process.env.DESTBUCKET === bucket ? `${basePath}` : `pdf/${bucket}/${basePath}`
   }
 
   return new Promise((resolve) => {

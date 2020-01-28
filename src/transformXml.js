@@ -21,9 +21,9 @@ export default async (event) => {
     fs.writeFileSync(xmlFile.replace('.xml', '.json'), JSON.stringify(rst))
   }
 
-  const rectContains = (rect, x1, y1) => {
-    return rect.x1 <= x1 && x1 <= rect.x1 + Math.abs(rect.width) &&
-      rect.y1 <= y1 && y1 <= rect.y1 + Math.abs(rect.height)
+  const rectContains = (rect, x, y) => {
+    return rect.x <= x && x <= rect.x + Math.abs(rect.width) &&
+      rect.y <= y && y <= rect.y + Math.abs(rect.height)
   }
 
   const rectToNumeric = (rect) => {
@@ -46,25 +46,39 @@ export default async (event) => {
     }
 
     return {
-      x1: rect.left,
-      y1: rect.top,
-      x2: rect.left + rect.width,
-      y2: rect.top + rect.height,
+      x: rect.left,
+      y: rect.top,
+      xx: rect.left + rect.width,
+      yy: rect.top + rect.height,
       width: rect.width,
       height: rect.height,
       font: rect.font ? Number(rect.font) : -1
     }
   }
 
+  const rectToScale = (rect, scale) => {
+    rect.x      = Math.floor(rect.x * scale)
+    rect.y      = Math.floor(rect.y * scale)
+    rect.xx     = Math.floor(rect.xx * scale)
+    rect.yy     = Math.floor(rect.yy * scale)
+    rect.width  = Math.floor(rect.width * scale)
+    rect.height = Math.floor(rect.height * scale)
+  }
+
   const pages = rst.pdf2xml.page
   pages.forEach((page) => {
+    page.oldsize = {
+      width: Number(page.$.width),
+      height: Number(page.$.height)
+    }
+
     page.number = Number(page.$.number)
-    page.width  = Number(page.$.width)
-    page.height = Number(page.$.height)
     page.src    = `jpeg-1000-page-${page.number}.jpg`
 
-    if (page.width > 0) {
-      page.scale1000 = 1000 / page.width
+    if (page.oldsize.width > 0) {
+      page.scale1000 = 1000 / page.oldsize.width
+      page.width     = 1000
+      page.height    = Math.floor(page.scale1000 * page.oldsize.height)
     }
 
     // convert rect to integer
@@ -83,7 +97,7 @@ export default async (event) => {
           delete t['$']
         }
 
-        if (rectContains(i.rect, t.rect.x1, t.rect.y1)) {
+        if (rectContains(i.rect, t.rect.x, t.rect.y)) {
           i.text.push(t)
           t.used = true
         }
@@ -122,6 +136,9 @@ export default async (event) => {
       i.desc = i.desc.trim()
       delete i['$']
       delete i['text']
+
+      // finally, scale rect based on 1000 pixel image
+      rectToScale(i.rect, page.scale1000)
     })
 
     page.items = page.image
@@ -129,7 +146,7 @@ export default async (event) => {
 
     // sort images - top then left
     page.items.sort((a, b) => {
-      return a.rect.y1 == b.rect.y1 ? a.rect.x1 - b.rect.x1 : a.rect.y1 - b.rect.y1
+      return a.rect.y == b.rect.y ? a.rect.x - b.rect.x : a.rect.y - b.rect.y
     })
 
     page.lines = []
@@ -142,7 +159,12 @@ export default async (event) => {
           })
         }
       }
+
+      rectToScale(t.rect, page.scale1000)
     })
+
+    // convert to page scale
+
 
     // delete things we no longer use
     delete page['fontspec']
