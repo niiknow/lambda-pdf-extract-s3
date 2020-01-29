@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { v4 as uuid } from 'uuid';
 import xmlToJsonAsync from './xmlToJsonAsync'
 
 const debug = require('debug')('lambda-pdfxs3')
@@ -63,6 +64,8 @@ export default async (event) => {
     rect.yy     = Math.floor(rect.yy * scale)
     rect.width  = Math.floor(rect.width * scale)
     rect.height = Math.floor(rect.height * scale)
+
+    return rect
   }
 
   const pages = rst.pdf2xml.page
@@ -74,6 +77,7 @@ export default async (event) => {
 
     page.number = Number(page.$.number)
     page.src    = `jpeg-1000-page-${page.number}.jpg`
+    page.uuid   = uuid()
 
     if (page.oldsize.width > 0) {
       page.scale1000 = 1000 / page.oldsize.width
@@ -134,6 +138,7 @@ export default async (event) => {
       })
 
       i.desc = i.desc.trim()
+      i.uuid = uuid()
       delete i['$']
       delete i['text']
 
@@ -151,20 +156,18 @@ export default async (event) => {
 
     page.lines = []
     page.text.forEach((t) => {
+      rectToScale(t.rect, page.scale1000)
+
       if (!t.used) {
         if (t._) {
           page.lines.push({
             rect: t.rect,
-            line: t._.trim()
+            line: t._.trim(),
+            uuid: uuid()
           })
         }
       }
-
-      rectToScale(t.rect, page.scale1000)
     })
-
-    // convert to page scale
-
 
     // delete things we no longer use
     delete page['fontspec']
@@ -174,6 +177,7 @@ export default async (event) => {
 
   const ret = {
     src: 'index.jpg',
+    uuid: uuid(),
     pages: pages,
     basePath: event.destPath
   }
