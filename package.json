@@ -1,6 +1,6 @@
 {
   "name": "lambda-pdfxs3",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Monitor some s3 bucket for pdf upload and extract to another bucket",
   "main": "handler.js",
   "scripts": {
@@ -24,6 +24,7 @@
     "async": "^3.1.1",
     "debug": "^4.1.1",
     "got": "^9.6.0",
+    "mime-types": "^2.1.26",
     "mkdirp": "^0.5.1",
     "recursive-readdir-sync": "^1.0.6",
     "source-map-support": "^0.5.16",
@@ -47,7 +48,7 @@
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-jest": "^23.6.0",
     "jest": "^24.9.0",
-    "serverless": "^1.61.3",
+    "serverless": "^1.62.0",
     "serverless-offline": "^5.12.1",
     "serverless-webpack": "^5.3.1",
     "webpack": "^4.41.5",

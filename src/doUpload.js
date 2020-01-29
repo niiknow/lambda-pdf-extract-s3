@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import AWS from 'aws-sdk'
+import mime from 'mime-types'
 
 const s3                = new AWS.S3()
 const asynk             = require( 'async' )
@@ -37,7 +38,8 @@ export default async ( event, callback ) => {
     const myParms = {
       Bucket: cfg.bucket,
       Key: myKey,
-      Body: fs.createReadStream(f)
+      Body: fs.createReadStream(f),
+      ContentType: mime.lookup(myKey)
     }
 
     debug(`Uploading to ${cfg.bucket}@${myKey}`)
