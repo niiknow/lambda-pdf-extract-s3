@@ -103,12 +103,11 @@ export default async (event) => {
 
         if (rectContains(i.rect, t.rect.x, t.rect.y)) {
           i.text.push(t)
-          t.used = true
         }
 
         // build string
         for(const k in t) {
-          if (k !== 'used' && k !== 'rect' && k !== '_' && k !== '$') {
+          if (k !== 'rect' && k !== '_' && k !== '$') {
             const v = t[k]
             if (Array.isArray(v)) {
               t._ = `${t._.trim()} ${v.join(' ')}`.trim()
@@ -158,14 +157,13 @@ export default async (event) => {
     page.text.forEach((t) => {
       rectToScale(t.rect, page.scale1000)
 
-      if (!t.used) {
-        if (t._) {
-          page.lines.push({
-            rect: t.rect,
-            line: t._.trim(),
-            uuid: uuid()
-          })
-        }
+      // copy text over
+      if (t._) {
+        page.lines.push({
+          rect: t.rect,
+          line: t._.trim(),
+          uuid: uuid()
+        })
       }
     })
 
