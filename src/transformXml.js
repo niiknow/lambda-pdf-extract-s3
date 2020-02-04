@@ -68,6 +68,33 @@ export default async (event) => {
     return rect
   }
 
+  const objToText = (t, obj) => {
+    for(const k in obj) {
+      if (k !== 'rect'&& k !== '$' && k !== 'desc' && k !== 'text') {
+        const v = obj[k]
+
+        if (Array.isArray(v)) {
+          v.forEach((j) => {
+            // determine if array of objects
+            if (typeof(j) === 'object') {
+            } else if (typeof(j) === 'string') {
+              t.desc = `${t.desc.trim()} ${j}`.trim()
+            }
+          })
+        } else if (typeof(v) === 'object') {
+          // must be object
+          objToText(t, j, dprint);
+        } else if (typeof(v) === 'string') {
+          t.desc = `${t.desc.trim()} ${v}`.trim()
+        }
+
+        if (t === obj) {
+          delete t[k]
+        }
+      }
+    }
+  }
+
   const pages = rst.pdf2xml.page
   pages.forEach((page) => {
     page.oldsize = {
@@ -93,30 +120,19 @@ export default async (event) => {
         i.src  = i.$.src
       }
 
+
       page.text.forEach((t) => {
-        t._ = t._ || ''
+        t.desc = t.desc || ''
 
         if (t.$) {
           t.rect = rectToNumeric(t.$)
           delete t['$']
         }
 
+        objToText(t, t)
+
         if (rectContains(i.rect, t.rect.x, t.rect.y)) {
           i.text.push(t)
-        }
-
-        // build string
-        for(const k in t) {
-          if (k !== 'rect' && k !== '_' && k !== '$') {
-            const v = t[k]
-            if (Array.isArray(v)) {
-              t._ = `${t._.trim()} ${v.join(' ')}`.trim()
-            } else {
-              t._ = `${t._.trim()} ${v}`.trim()
-            }
-
-            delete t[k]
-          }
         }
       })
 
@@ -131,8 +147,8 @@ export default async (event) => {
 
       i.desc = ''
       i.text.forEach((t) => {
-        if (t._) {
-          i.desc = `${i.desc.trim()} ${t._}`.trim()
+        if (typeof(t.desc) === 'string') {
+          i.desc = `${i.desc.trim()} ${t.desc}`.trim()
         }
       })
 
@@ -158,10 +174,10 @@ export default async (event) => {
       rectToScale(t.rect, page.scale1000)
 
       // copy text over
-      if (t._) {
+      if (t.desc) {
         page.lines.push({
           rect: t.rect,
-          line: t._.trim(),
+          desc: t.desc.trim(),
           uuid: uuid()
         })
       }
