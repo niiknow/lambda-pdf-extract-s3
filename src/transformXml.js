@@ -174,7 +174,7 @@ export default async (event) => {
       rectToScale(t.rect, page.scale1000)
 
       // copy text over
-      if (t.desc) {
+      if (typeof(t.desc) === 'string') {
         page.lines.push({
           rect: t.rect,
           desc: t.desc.trim(),
