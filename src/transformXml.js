@@ -77,13 +77,14 @@ export default async (event) => {
           v.forEach((j) => {
             // determine if array of objects
             if (typeof(j) === 'object') {
+              objToText(t, j)
             } else if (typeof(j) === 'string') {
               t.desc = `${t.desc.trim()} ${j}`.trim()
             }
           })
         } else if (typeof(v) === 'object') {
           // must be object
-          objToText(t, j, dprint);
+          objToText(t, v)
         } else if (typeof(v) === 'string') {
           t.desc = `${t.desc.trim()} ${v}`.trim()
         }
