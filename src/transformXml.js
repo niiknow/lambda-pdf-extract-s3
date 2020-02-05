@@ -28,6 +28,11 @@ export default async (event) => {
   }
 
   const rectToNumeric = (rect) => {
+    // previously done so exit
+    if (rect.xx) {
+      return rect
+    }
+
     rect.top = Number(rect.top)
     rect.left = Number(rect.left)
     rect.width = Number(rect.width)
@@ -140,7 +145,7 @@ export default async (event) => {
       i.text.sort((a, b) => {
         // font size, then top, then left
         if (a.rect.font == b.rect.font) {
-          return a.rect.top == b.rect.top ? a.rect.left - b.rect.left : a.rect.top - b.rect.top
+          return a.rect.y == b.rect.y ? a.rect.x - b.rect.x : a.rect.y - b.rect.y
         }
 
         return a.rect.font - b.rect.font
