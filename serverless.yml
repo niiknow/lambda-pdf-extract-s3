@@ -38,7 +38,7 @@ functions:
     handler: handler.s3Handler
     events:
       - s3:
-          bucket: ${file(env.yml):${self:provider.stage}.FROMBUCKET}
+          bucket: ${file(env.yml):${self:provider.stage}.SRCBUCKET}
           event: s3:ObjectCreated:*
           rules:
             - prefix: circ/

@@ -10,7 +10,7 @@ describe('s3-handler-tests', () => {
           {
             's3':{
               'bucket':{
-                'name': process.env.FROMBUCKET
+                'name': process.env.SRCBUCKET
               },
               'object':{
                 'key': 'pdf-bulk/claiborne-hill-10-16-17-with-coupon.pdf'

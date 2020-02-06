@@ -12,7 +12,8 @@ const debug = require('debug')('lambda-pdfxs3')
 
 const cfg = {
   localpath: (process.env.LOCALPATH || '/tmp/pdf').replace(/\/+$/, ''),
-  cmd: './index.sh'
+  cmd: './index.sh',
+  width: process.env.WIDTH || 3000
 }
 
 export default ( event, callback ) => {
@@ -23,7 +24,7 @@ export default ( event, callback ) => {
   }
 
   params.dpi = parseInt( params.dpi || 72 )
-  params.width = parseInt( params.width || 2000 )
+  params.width = parseInt( params.width || cfg.width )
 
   const opt        = urlParse.parse( params.url, true )
   const pathName   = decodeURIComponent( opt.pathname )
