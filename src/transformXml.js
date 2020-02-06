@@ -27,7 +27,7 @@ export default async (event) => {
       rect.y <= y && y <= rect.y + Math.abs(rect.height)
   }
 
-  const rectToNumeric = (rect) => {
+  const rectToNumeric = (rect, maxX, maxY) => {
     // previously done so exit
     if (rect.xx) {
       return rect
@@ -37,6 +37,14 @@ export default async (event) => {
     rect.left = Number(rect.left)
     rect.width = Number(rect.width)
     rect.height = Number(rect.height)
+
+    if (rect.left < 10) {
+      rect.left = 10
+    }
+
+    if (rect.top < 10) {
+      rect.top = 10
+    }
 
     // handle situation where image is flipped
     // which result in negative width and height
@@ -51,15 +59,21 @@ export default async (event) => {
       rect.height = Math.abs(rect.height)
     }
 
-    return {
-      x: rect.left,
-      y: rect.top,
-      xx: rect.left + rect.width,
-      yy: rect.top + rect.height,
-      width: rect.width,
-      height: rect.height,
+    const xx = Math.abs(rect.left + rect.width),
+      yy =  Math.abs(rect.top + rect.height)
+
+    const rst = {
+      x: rect.left > maxX ? maxX : rect.left,
+      y: rect.top > maxY ? maxY : rect.top,
+      xx: xx > maxX ? maxX : xx,
+      yy: yy > maxY ? maxY : yy,
       font: rect.font ? Number(rect.font) : -1
     }
+
+    rst.width = rst.xx - rst.x
+    rst.height = rst.yy - rst.y
+
+    return rst
   }
 
   const rectToScale = (rect, scale) => {
@@ -120,7 +134,7 @@ export default async (event) => {
 
     // convert rect to integer
     page.image.forEach((i) => {
-      i.rect = rectToNumeric(i.$)
+      i.rect = rectToNumeric(i.$, page.oldsize.width - 10, page.oldsize.height - 10)
       i.text = []
       if (i.$.src) {
         i.src  = i.$.src
@@ -131,7 +145,7 @@ export default async (event) => {
         t.desc = t.desc || ''
 
         if (t.$) {
-          t.rect = rectToNumeric(t.$)
+          t.rect = rectToNumeric(t.$, page.oldsize.width - 10, page.oldsize.height - 10)
           delete t['$']
         }
 
