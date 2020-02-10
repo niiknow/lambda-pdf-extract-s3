@@ -81,14 +81,8 @@ export default async (event) => {
     rect.y      = Math.floor(rect.y * scale)
     rect.xx     = Math.floor(rect.xx * scale)
     rect.yy     = Math.floor(rect.yy * scale)
-
-    if (rect.width) {
-      delete rect['width']
-    }
-
-    if (rect.height) {
-      delete rect['height']
-    }
+    rect.width  = Math.floor(rect.width * scale)
+    rect.height = Math.floor(rect.height * scale)
 
     return rect
   }
