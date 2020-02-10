@@ -81,8 +81,14 @@ export default async (event) => {
     rect.y      = Math.floor(rect.y * scale)
     rect.xx     = Math.floor(rect.xx * scale)
     rect.yy     = Math.floor(rect.yy * scale)
-    rect.width  = Math.floor(rect.width * scale)
-    rect.height = Math.floor(rect.height * scale)
+
+    if (rect.width) {
+      delete rect['width']
+    }
+
+    if (rect.height) {
+      delete rect['height']
+    }
 
     return rect
   }
@@ -176,6 +182,7 @@ export default async (event) => {
       i.uuid = uuid()
       delete i['$']
       delete i['text']
+      delete i.rect['font']
 
       // finally, scale rect based on 1000 pixel image
       rectToScale(i.rect, page.scale1000)
