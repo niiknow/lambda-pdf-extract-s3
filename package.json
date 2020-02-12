@@ -38,7 +38,7 @@
     "@babel/preset-env": "^7.8.4",
     "@babel/register": "^7.8.3",
     "@babel/runtime": "^7.8.4",
-    "aws-sdk": "^2.614.0",
+    "aws-sdk": "^2.616.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-source-map-support": "^2.1.1",
     "copy-webpack-plugin": "^5.1.1",
@@ -51,7 +51,7 @@
     "serverless": "^1.63.0",
     "serverless-offline": "^5.12.1",
     "serverless-webpack": "^5.3.1",
-    "webpack": "^4.41.5",
+    "webpack": "^4.41.6",
     "webpack-node-externals": "^1.7.2"
   }
 }

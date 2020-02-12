@@ -123,13 +123,13 @@ export default async (event) => {
     }
 
     page.number = Number(page.$.number)
-    page.src    = `jpeg-1000-page-${page.number}.jpg`
+    page.src    = `jpeg-1400-page-${page.number}.jpg`
     page.uuid   = uuid()
 
     if (page.oldsize.width > 0) {
-      page.scale1000 = 1000 / page.oldsize.width
-      page.width     = 1000
-      page.height    = Math.floor(page.scale1000 * page.oldsize.height)
+      page.scale  = 1400 / page.oldsize.width
+      page.width  = 1400
+      page.height = Math.floor(page.scale * page.oldsize.height)
     }
 
     // convert rect to integer
@@ -178,8 +178,8 @@ export default async (event) => {
       delete i['text']
       delete i.rect['font']
 
-      // finally, scale rect based on 1000 pixel image
-      rectToScale(i.rect, page.scale1000)
+      // finally, scale rect based on 1400 pixel image
+      rectToScale(i.rect, page.scale)
     })
 
     page.items = page.image
@@ -192,7 +192,7 @@ export default async (event) => {
 
     page.lines = []
     page.text.forEach((t) => {
-      rectToScale(t.rect, page.scale1000)
+      rectToScale(t.rect, page.scale)
 
       // copy text over
       if (typeof(t.desc) === 'string') {
