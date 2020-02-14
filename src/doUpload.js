@@ -20,7 +20,7 @@ export default async ( event, callback ) => {
   debug('Starting upload process...', JSON.stringify(event))
 
   try {
-    files = recursiveReadSync( `${cfg.localpath}/` )
+    files = recursiveReadSync( `${event.local}` )
   } catch ( err ) {
     files = []
     return callback( err )
