@@ -45,4 +45,14 @@ describe('Transform xml to fit text to image', () => {
     expect(rst.pages).toHaveLength(8)
     expect(rst.pages[0].items.length > 1).toBe(true)
   })
+
+  test('correctly transform crop-single xml to json', async () => {
+    const fullPath = path.resolve('./tests/data/crop-single.xml');
+    const rst = await handler({ xmlFile: fullPath, mcFile: fullPath.replace('.xml', '.json') })
+    const rstFile = fullPath.replace('.xml', '-x.json')
+    const exists = fs.existsSync(rstFile)
+    expect(exists).toBe(true)
+    expect(rst.pages).toHaveLength(1)
+    expect(rst.pages[0].items.length > 1).toBe(true)
+  })
 })

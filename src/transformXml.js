@@ -15,7 +15,8 @@ export default async (event) => {
 
   // get xml file
   const xmlFile = event.xmlFile
-  const rst = await xmlToJsonAsync(xmlFile)
+  const rst     = await xmlToJsonAsync(xmlFile)
+  const mcBox   = event.mcFile ? require(event.mcFile) : { MediaBox: {}, CropBox: {} }
 
   // save as new filename.json instead of .xml
   if (event.saveJson) {
@@ -76,14 +77,22 @@ export default async (event) => {
     return rst
   }
 
-  const rectToScale = (rect, scale) => {
-    rect.x      = Math.floor(rect.x * scale)
-    rect.y      = Math.floor(rect.y * scale)
+  const rectToScale = (rect, scale, maxWidth, maxHeight) => {
+    rect.x      = rect.x < 0 ? 10 : Math.floor(rect.x * scale)
+    rect.y      = rect.x < 0 ? 10 : Math.floor(rect.y * scale)
     rect.xx     = Math.floor(rect.xx * scale)
     rect.yy     = Math.floor(rect.yy * scale)
-    rect.width  = Math.floor(rect.width * scale)
-    rect.height = Math.floor(rect.height * scale)
 
+    if (rect.xx > maxWidth) {
+     rect.xx = rect.xx - 10
+    }
+
+    if (rect.yy > maxHeight) {
+     rect.yy = rect.yy - 10
+    }
+
+    rect.width  = Math.floor(Math.abs(rect.xx - rect.x) * scale)
+    rect.height = Math.floor(Math.abs(rect.yy - rect.y) * scale)
     return rect
   }
 
@@ -177,9 +186,6 @@ export default async (event) => {
       delete i['$']
       delete i['text']
       delete i.rect['font']
-
-      // finally, scale rect based on 1400 pixel image
-      rectToScale(i.rect, page.scale)
     })
 
     page.items = page.image
@@ -192,8 +198,6 @@ export default async (event) => {
 
     page.lines = []
     page.text.forEach((t) => {
-      rectToScale(t.rect, page.scale)
-
       // copy text over
       if (typeof(t.desc) === 'string') {
         page.lines.push({
@@ -208,6 +212,83 @@ export default async (event) => {
     delete page['fontspec']
     delete page['text']
     delete page['$']
+  })
+
+  mcBox.CropBox.width = mcBox.CropBox.xx - mcBox.CropBox.x
+  mcBox.CropBox.height = mcBox.CropBox.yy - mcBox.CropBox.y
+  mcBox.MediaBox.width = mcBox.MediaBox.xx - mcBox.MediaBox.x
+  mcBox.MediaBox.height = mcBox.MediaBox.yy - mcBox.MediaBox.y
+
+  // perform out own cropping like procedure to adjust coordinates
+  // if width is growing, then we want to increase the height porportionately
+  // calculate new cropbox dimension (for width, then height)
+
+  pages.forEach(p => {
+    if (!mcBox.scale) {
+      if ((mcBox.CropBox.width !== mcBox.MediaBox.width) || (mcBox.CropBox.height !== mcBox.MediaBox.height)) {
+
+        // this should be around 1.5 pixels to 1 pt/point but we calculate it anyway
+        mcBox.scale = { top: 1, left: 1, width: p.oldsize.width / mcBox.MediaBox.width, height: p.oldsize.height / mcBox.MediaBox.height }
+
+        // calculate new cropbox dimension (for width, then height)
+        // if width if bigger
+        if (mcBox.MediaBox.width > mcBox.CropBox.width) {
+          // use to scale our height later (yes - height)
+          mcBox.scale.top = mcBox.MediaBox.width / mcBox.CropBox.width
+        }
+        if (mcBox.MediaBox.height > mcBox.CropBox.height) {
+          // use to scale our width later
+          mcBox.scale.left = mcBox.MediaBox.height / mcBox.CropBox.height
+        }
+
+        // calculate the pixel moving value for the CropBox
+        mcBox.CropBoxPixel = {
+          x: mcBox.CropBox.x * mcBox.scale.width,
+          y: mcBox.CropBox.y * mcBox.scale.height,
+          xx: mcBox.CropBox.xx * mcBox.scale.width,
+          yy: mcBox.CropBox.yy * mcBox.scale.height
+        }
+        mcBox.MediaBoxPixel = {
+          x: mcBox.MediaBox.x * mcBox.scale.width,
+          y: mcBox.MediaBox.y * mcBox.scale.height,
+          xx: mcBox.MediaBox.xx * mcBox.scale.width,
+          yy: mcBox.MediaBox.yy * mcBox.scale.height
+        }
+
+      }
+    }
+
+    p.mcbox = mcBox
+    p.oldsize.widthx = p.oldsize.width * mcBox.scale.left
+    p.oldsize.heightx = p.oldsize.width * mcBox.scale.top
+    p.width = p.width * mcBox.scale.left
+    p.height = p.height * mcBox.scale.top
+
+    // adjust the location
+    p.items.forEach((i) => {
+      if (mcBox.scale) {
+        // move x left, y up, xx right, yy down
+        i.rect.x = (i.rect.x - mcBox.CropBoxPixel.x) * mcBox.scale.left
+        i.rect.y = (i.rect.y - mcBox.CropBoxPixel.y) * mcBox.scale.top
+        i.rect.xx = (i.rect.xx + (mcBox.MediaBoxPixel.xx - mcBox.CropBoxPixel.xx)) * mcBox.scale.left
+        i.rect.yy = (i.rect.yy + (mcBox.MediaBoxPixel.yy - mcBox.CropBoxPixel.yy)) * mcBox.scale.top
+      }
+
+      rectToScale(i.rect, p.scale, p.width, p.height)
+    })
+
+    p.lines.forEach((i) => {
+
+      if (mcBox.scale) {
+        // move x left, y up, xx right, yy down
+        i.rect.x = (i.rect.x - mcBox.CropBoxPixel.x) * mcBox.scale.left
+        i.rect.y = (i.rect.y - mcBox.CropBoxPixel.y) * mcBox.scale.top
+        i.rect.xx = (i.rect.xx + (mcBox.MediaBoxPixel.xx - mcBox.CropBoxPixel.xx)) * mcBox.scale.left
+        i.rect.yy = (i.rect.yy + (mcBox.MediaBoxPixel.yy - mcBox.CropBoxPixel.yy)) * mcBox.scale.top
+      }
+
+      rectToScale(i.rect, p.scale, p.width, p.height)
+    })
   })
 
   const ret = {

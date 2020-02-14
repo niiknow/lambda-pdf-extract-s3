@@ -63,7 +63,8 @@ export default ( event, callback ) => {
         await transformXml({
           xmlFile: path.join(params.local, 'index.xml'),
           saveJson: true,
-          destPath: params.dest
+          destPath: params.dest,
+          mcFile: path.join(params.local, 'mcbox.json')
         })
 
         // do upload if no error
