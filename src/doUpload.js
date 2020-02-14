@@ -38,8 +38,12 @@ export default async ( event, callback ) => {
     const myParms = {
       Bucket: cfg.bucket,
       Key: myKey,
-      Body: fs.createReadStream(f),
-      ContentType: mime.lookup(myKey)
+      Body: fs.createReadStream(f)
+    }
+
+    const contentType = mime.lookup(myKey)
+    if (typeof(contentType) === 'string') {
+      myParms.ContentType = contentType
     }
 
     debug(`Uploading to ${cfg.bucket}@${myKey}`)
