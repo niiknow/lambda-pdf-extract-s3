@@ -20,8 +20,8 @@ if [ "1400" != "$width" ]; then
   ${base_exec}pdftoppm -q -cropbox -jpeg -r $file_dpi -scale-to-x $width -scale-to-y -1 index.pdf "jpeg-$width-page"
 fi
 
-read -r mbx1 mby1 mbx2 mby2 < <(pdfinfo -box index.pdf | grep "MediaBox:" | sed 's/[a-zA-Z: ]*\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]/\1 \2 \3 \4/')
-read -r cbx1 cby1 cbx2 cby2  < <(pdfinfo -box index.pdf | grep "CropBox:" | sed 's/[a-zA-Z: ]*\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]/\1 \2 \3 \4/')
+read -r mbx1 mby1 mbx2 mby2 < <(${base_exec}pdfinfo -box index.pdf | grep "MediaBox:" | sed 's/[a-zA-Z: ]*\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]/\1 \2 \3 \4/')
+read -r cbx1 cby1 cbx2 cby2  < <(${base_exec}pdfinfo -box index.pdf | grep "CropBox:" | sed 's/[a-zA-Z: ]*\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]/\1 \2 \3 \4/')
 
 echo '{ "MediaBox": { "x": $mbx1, "y": $mby1, "xx": $mbx2 "yy": $mby2 }, "CropBox": { "x": $cbx1, "y": $cby1, "xx": $cbx2 "yy": $cby2 } }' > mcbox.json
 
