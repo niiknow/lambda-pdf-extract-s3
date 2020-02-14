@@ -124,6 +124,11 @@ export default async (event) => {
     }
   }
 
+  mcBox.CropBox.width = mcBox.CropBox.xx - mcBox.CropBox.x
+  mcBox.CropBox.height = mcBox.CropBox.yy - mcBox.CropBox.y
+  mcBox.MediaBox.width = mcBox.MediaBox.xx - mcBox.MediaBox.x
+  mcBox.MediaBox.height = mcBox.MediaBox.yy - mcBox.MediaBox.y
+
   const pages = rst.pdf2xml.page
   pages.forEach((page) => {
     page.oldsize = {
@@ -140,6 +145,42 @@ export default async (event) => {
       page.width  = 1400
       page.height = Math.floor(page.scale * page.oldsize.height)
     }
+
+    if (!mcBox.scale) {
+      if ((mcBox.CropBox.width !== mcBox.MediaBox.width) || (mcBox.CropBox.height !== mcBox.MediaBox.height)) {
+
+        // this should be around 1.5 pixels to 1 pt/point but we calculate it anyway
+        mcBox.scale = { top: 1, left: 1, width: page.oldsize.width / mcBox.MediaBox.width, height: page.oldsize.height / mcBox.MediaBox.height }
+
+        // calculate new cropbox dimension (for width, then height)
+        // if width if bigger
+        if (mcBox.MediaBox.width > mcBox.CropBox.width) {
+          // use to scale our height later (yes - height)
+          mcBox.scale.top = mcBox.MediaBox.width / mcBox.CropBox.width
+        }
+        if (mcBox.MediaBox.height > mcBox.CropBox.height) {
+          // use to scale our width later
+          mcBox.scale.left = mcBox.MediaBox.height / mcBox.CropBox.height
+        }
+
+        // calculate the pixel moving value for the CropBox
+        mcBox.CropBoxPixel = {
+          x: mcBox.CropBox.x * mcBox.scale.width,
+          y: mcBox.CropBox.y * mcBox.scale.height,
+          xx: mcBox.CropBox.xx * mcBox.scale.width,
+          yy: mcBox.CropBox.yy * mcBox.scale.height
+        }
+        mcBox.MediaBoxPixel = {
+          x: mcBox.MediaBox.x * mcBox.scale.width,
+          y: mcBox.MediaBox.y * mcBox.scale.height,
+          xx: mcBox.MediaBox.xx * mcBox.scale.width,
+          yy: mcBox.MediaBox.yy * mcBox.scale.height
+        }
+
+      }
+    }
+
+    page.mcbox = mcBox
 
     // convert rect to integer
     page.image.forEach((i) => {
@@ -198,14 +239,28 @@ export default async (event) => {
 
     page.lines = []
     page.text.forEach((t) => {
-      // copy text over
-      if (typeof(t.desc) === 'string') {
-        page.lines.push({
-          rect: t.rect,
-          desc: t.desc.trim(),
-          uuid: uuid()
-        })
+      if (typeof(t.desc) !== 'string') {
+        return
       }
+
+      // ignore line mapping not inside cropbox
+      if (mcBox.CropBoxPixel) {
+        const cb = mcBox.CropBoxPixel
+        if (t.rect.x < (cb.x - 10) || t.rect.x > (cb.xx + 10)) {
+          return
+        }
+        if (t.rect.y < (cb.y - 10) || t.rect.yy > (cb.yy + 10)) {
+          return
+        }
+      }
+
+      // copy text over
+      page.lines.push({
+        rect: t.rect,
+        desc: t.desc.trim(),
+        uuid: uuid()
+      })
+
     })
 
     // delete things we no longer use
@@ -214,52 +269,11 @@ export default async (event) => {
     delete page['$']
   })
 
-  mcBox.CropBox.width = mcBox.CropBox.xx - mcBox.CropBox.x
-  mcBox.CropBox.height = mcBox.CropBox.yy - mcBox.CropBox.y
-  mcBox.MediaBox.width = mcBox.MediaBox.xx - mcBox.MediaBox.x
-  mcBox.MediaBox.height = mcBox.MediaBox.yy - mcBox.MediaBox.y
-
   // perform out own cropping like procedure to adjust coordinates
   // if width is growing, then we want to increase the height porportionately
   // calculate new cropbox dimension (for width, then height)
 
   pages.forEach(p => {
-    if (!mcBox.scale) {
-      if ((mcBox.CropBox.width !== mcBox.MediaBox.width) || (mcBox.CropBox.height !== mcBox.MediaBox.height)) {
-
-        // this should be around 1.5 pixels to 1 pt/point but we calculate it anyway
-        mcBox.scale = { top: 1, left: 1, width: p.oldsize.width / mcBox.MediaBox.width, height: p.oldsize.height / mcBox.MediaBox.height }
-
-        // calculate new cropbox dimension (for width, then height)
-        // if width if bigger
-        if (mcBox.MediaBox.width > mcBox.CropBox.width) {
-          // use to scale our height later (yes - height)
-          mcBox.scale.top = mcBox.MediaBox.width / mcBox.CropBox.width
-        }
-        if (mcBox.MediaBox.height > mcBox.CropBox.height) {
-          // use to scale our width later
-          mcBox.scale.left = mcBox.MediaBox.height / mcBox.CropBox.height
-        }
-
-        // calculate the pixel moving value for the CropBox
-        mcBox.CropBoxPixel = {
-          x: mcBox.CropBox.x * mcBox.scale.width,
-          y: mcBox.CropBox.y * mcBox.scale.height,
-          xx: mcBox.CropBox.xx * mcBox.scale.width,
-          yy: mcBox.CropBox.yy * mcBox.scale.height
-        }
-        mcBox.MediaBoxPixel = {
-          x: mcBox.MediaBox.x * mcBox.scale.width,
-          y: mcBox.MediaBox.y * mcBox.scale.height,
-          xx: mcBox.MediaBox.xx * mcBox.scale.width,
-          yy: mcBox.MediaBox.yy * mcBox.scale.height
-        }
-
-      }
-    }
-
-    p.mcbox = mcBox
-
     if (mcBox.scale) {
       p.oldsize.widthx  = p.oldsize.width
       p.oldsize.heightx = p.oldsize.height * mcBox.scale.top
