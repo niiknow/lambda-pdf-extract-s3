@@ -259,10 +259,14 @@ export default async (event) => {
     }
 
     p.mcbox = mcBox
-    p.oldsize.widthx = p.oldsize.width * mcBox.scale.left
-    p.oldsize.heightx = p.oldsize.width * mcBox.scale.top
-    p.width = p.width * mcBox.scale.left
-    p.height = p.height * mcBox.scale.top
+    p.oldsize.widthx      = p.oldsize.width
+    p.oldsize.heightx     = p.oldsize.height * mcBox.scale.top
+    p.oldsize.width_crop  = Math.ceil(p.oldsize.width * mcBox.scale.left)
+    p.oldsize.height_crop = Math.ceil(p.oldsize.height * mcBox.scale.top)
+    p.widthx              = p.width
+    p.heightx             = p.height
+    p.width               = Math.ceil(p.width * mcBox.scale.left)
+    p.height              = Math.ceil(p.height * mcBox.scale.top)
 
     // adjust the location
     p.items.forEach((i) => {
