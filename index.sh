@@ -25,7 +25,7 @@ read -r cbx1 cby1 cbx2 cby2  < <(pdfinfo -box $FILE | grep "CropBox:" | sed 's/[
 
 echo '{ "MediaBox": { "x": $mbx1, "y": $mby1, "xx": $mbx2 "yy": $mby2 }, "CropBox": { "x": $cbx1, "y": $cby1, "xx": $cbx2 "yy": $cby2 } }' > mcbox.json
 
-${base_exec}pdftoppm -q -jpeg -r $file_dpi -scale-to-x 1400 -scale-to-y -1 index.pdf jpeg-1400-page
+${base_exec}pdftoppm -q -cropbox-jpeg -r $file_dpi -scale-to-x 1400 -scale-to-y -1 index.pdf jpeg-1400-page
 ${base_exec}pdftohtml -q -p -hidden -xml index.pdf
 ${base_exec}pdftoppm -q -cropbox -r $file_dpi index.pdf ppm-page
 
