@@ -16,7 +16,7 @@ export default async (event) => {
   // get xml file
   const xmlFile = event.xmlFile
   const rst     = await xmlToJsonAsync(xmlFile)
-  const mcBox   = event.mcFile ? require(event.mcFile) : { MediaBox: {}, CropBox: {} }
+  const mcBox   = event.mcFile ? JSON.parse(fs.readFileSync(event.mcFile)) : { MediaBox: {}, CropBox: {} }
 
   // save as new filename.json instead of .xml
   if (event.saveJson) {
