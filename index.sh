@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 cwd=$(pwd)
 file_dpi=$1
 work_dir=$2
@@ -23,10 +23,12 @@ fi
 
 PDF_INFO=${base_exec}pdfinfo
 
-read -r mbx1 mby1 mbx2 mby2 < <($PDF_INFO -box index.pdf | grep "MediaBox:" | sed 's/[a-zA-Z: ]*\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]/\1 \2 \3 \4/')
-read -r cbx1 cby1 cbx2 cby2 < <($PDF_INFO -box index.pdf | grep "CropBox:" | sed 's/[a-zA-Z: ]*\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]\([0-9\.]\+\)*[ ]/\1 \2 \3 \4/')
+MBSTR=`$PDF_INFO -box index.pdf | grep "MediaBox:"`
+CBSTR=`$PDF_INFO -box index.pdf | grep "CropBox:"`
+MBARRAY=($MBSTR)
+CBARRAY=($CBSTR)
 
-echo '{ "MediaBox": { "x": '$mbx1', "y": '$mby1', "xx": '$mbx2', "yy": '$mby2' }, "CropBox": { "x": '$cbx1', "y": '$cby1', "xx": '$cbx2', "yy": '$cby2'} }' > mcbox.json
+echo '{ "MediaBox": { "x": '${MBARRAY[1]}', "y": '${MBARRAY[2]}', "xx": '${MBARRAY[3]}', "yy": '${MBARRAY[4]}' }, "CropBox": { "x": '${CBARRAY[1]}', "y": '${CBARRAY[2]}', "xx": '${CBARRAY[3]}', "yy": '${CBARRAY[4]}'} }' > mcbox.json
 
 ${base_exec}pdftoppm -q -cropbox -jpeg -r $file_dpi -scale-to-x 1400 -scale-to-y -1 index.pdf jpeg-1400-page
 ${base_exec}pdftohtml -q -p -hidden -xml index.pdf
