@@ -58,7 +58,9 @@ describe('Transform xml to fit text to image', () => {
 
   test('debug transform', async () => {
     const fullPath = path.resolve('./tests/data/index.xml');
-    const rst = await handler({ xmlFile: fullPath, mcFile: fullPath.replace('.xml', '.json') })
+
+    await handler({ xmlFile: fullPath, mcFile: fullPath.replace('.xml', '.json') })
+
     const rstFile = fullPath.replace('.xml', '-x.json')
     const exists = fs.existsSync(rstFile)
     expect(exists).toBe(true)
