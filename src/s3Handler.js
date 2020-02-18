@@ -1,7 +1,6 @@
 import path from 'path'
 import AWS from 'aws-sdk'
 import doDownload from './doDownload'
-import res from './response'
 
 const s3    = new AWS.S3()
 const debug = require('debug')('lambda-pdfxs3')
@@ -11,11 +10,9 @@ const debug = require('debug')('lambda-pdfxs3')
  *
  * @param  object     event
  * @param  object     context
- * @param  Function   callback the callback
  */
-export default (event, context, callback) => {
+export default async (event, context) => {
   debug('Begin event...', JSON.stringify(event))
-  const rspHandler = res(context, callback)
   const s3Object   = event.Records[0].s3
   const bucket     = s3Object.bucket.name
   const key        = decodeURIComponent(s3Object.object.key.replace( /\+/g, ' ' ))
@@ -28,14 +25,12 @@ export default (event, context, callback) => {
 
   event.queryStringParameters = {
     url: s3.getSignedUrl('getObject', params ),
-    dpi: 72,
+    dpi: 95,
+    scaleWidth: 1400,
     dest: process.env.DESTBUCKET === bucket ? `${basePath}` : `pdf/${bucket}/${basePath}`
   }
 
-  return new Promise((resolve) => {
-    doDownload(event, (msg, code) => {
-      rspHandler(msg, code)
-      resolve(msg)
-    })
-  })
+  const rst = await doDownload(event)
+
+  return rst
 }

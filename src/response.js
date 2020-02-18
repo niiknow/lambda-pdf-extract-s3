@@ -5,23 +5,25 @@ const rspHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type'
 }
 
-export default (rsp, callback) => {
+export default (rsp = null, callback = null) => {
   return (data, code=200, headers=null) => {
     const body = JSON.stringify({ status: code, message: data })
-    if (callback) {
-      const rst = {
-        headers: headers || rspHeaders,
-        statusCode: code,
-        body: body
-      }
+    const rst = {
+      headers: headers || rspHeaders,
+      statusCode: code,
+      body: body
+    }
 
+    if (callback) {
       return callback(null, rst)
     }
 
-    if (rsp) {
+    if (rsp && rsp.writeHead) {
       rsp.writeHead(code, headers || rspHeaders)
       rsp.write(body)
       rsp.end()
     }
+
+    return rst
   }
 }

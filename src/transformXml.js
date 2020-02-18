@@ -19,7 +19,7 @@ export default async (event) => {
   const rst     = await xmlToJsonAsync(xmlFile)
   const pages   = rst.pdf2xml.page
   const mcBox   = event.mcFile ? JSON.parse(fs.readFileSync(event.mcFile)) : { MediaBox: {}, CropBox: {} }
-  const scaleW  = 1400 // standard width
+  const scaleW  = event.scaleWidth || 1400 // standard width
 
   // save as new filename.json instead of .xml
   if (event.saveJson) {

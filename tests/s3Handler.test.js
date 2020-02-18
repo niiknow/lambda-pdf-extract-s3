@@ -20,6 +20,6 @@ describe('s3-handler-tests', () => {
        ]
     })
 
-    expect(rst).toBe('Success.')
+    expect(rst.statusCode).toBe(200)
   })
 })

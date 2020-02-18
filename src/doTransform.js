@@ -2,7 +2,7 @@ const debug = require('debug')('lambda-pdfxs3')
 const { exec }  = require('child_process')
 
 export default ( event ) => {
-  debug( 'executing: ', event.cmd )
+  debug('executing: ', event.cmd)
 
   return new Promise((resolve, reject) => {
     const child = exec(event.cmd, ( error ) => {
