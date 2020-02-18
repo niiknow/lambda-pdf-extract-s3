@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf2xml SYSTEM "pdf2xml.dtd">
+
+<pdf2xml producer="poppler" version="0.61.0">
+<page number="1" position="absolute" top="0" left="0" height="2268" width="1323">
+  <fontspec id="0" size="10" family="Times" color="#231f20"/>
+  <fontspec id="1" size="31" family="Times" color="#231f20"/>
+  <fontspec id="2" size="31" family="Times" color="#231f20"/>
+  <fontspec id="3" size="16" family="Times" color="#231f20"/>
+  <fontspec id="4" size="28" family="Times" color="#ffffff"/>
+  <fontspec id="5" size="13" family="Times" color="#231f20"/>
+  <fontspec id="6" size="13" family="Times" color="#231f20"/>
+  <fontspec id="7" size="13" family="Times" color="#231f20"/>
+  <fontspec id="8" size="17" family="Times" color="#231f20"/>
+  <fontspec id="9" size="37" family="Times" color="#ffffff"/>
+  <fontspec id="10" size="19" family="Times" color="#ffffff"/>
+  <fontspec id="11" size="10" family="Times" color="#ffffff"/>
+  <fontspec id="12" size="13" family="Times" color="#ffffff"/>
+  <fontspec id="13" size="54" family="Times" color="#ffffff"/>
+  <fontspec id="14" size="24" family="Times" color="#ffffff"/>
+  <fontspec id="15" size="6" family="Times" color="#ffffff"/>
+  <fontspec id="16" size="31" family="Times" color="#ffffff"/>
+  <fontspec id="17" size="69" family="Times" color="#cd3947"/>
+  <fontspec id="18" size="40" family="Times" color="#cd3947"/>
+  <fontspec id="19" size="25" family="Times" color="#cd3947"/>
+  <fontspec id="20" size="14" family="Times" color="#cd3947"/>
+  <fontspec id="21" size="34" family="Times" color="#646052"/>
+  <fontspec id="22" size="15" family="Times" color="#646052"/>
+  <fontspec id="23" size="14" family="Times" color="#100f0d"/>
+  <fontspec id="24" size="19" family="Times" color="#231f20"/>
+  <fontspec id="25" size="11" family="Times" color="#231f20"/>
+  <fontspec id="26" size="46" family="Times" color="#ffffff"/>
+  <fontspec id="27" size="79" family="Times" color="#ffffff"/>
+  <fontspec id="28" size="22" family="Times" color="#ffffff"/>
+  <fontspec id="29" size="17" family="Times" color="#ffffff"/>
+  <fontspec id="30" size="20" family="Times" color="#ffffff"/>
+  <fontspec id="31" size="14" family="Times" color="#231f20"/>
+  <fontspec id="32" size="10" family="Times" color="#231f20"/>
+  <fontspec id="33" size="32" family="Times" color="#231f20"/>
+  <fontspec id="34" size="55" family="Times" color="#231f20"/>
+  <fontspec id="35" size="11" family="Times" color="#f0481c"/>
+  <fontspec id="36" size="15" family="Times" color="#231f20"/>
+  <fontspec id="37" size="11" family="Times" color="#231f20"/>
+  <fontspec id="38" size="133" family="Times" color="#ec0c91"/>
+  <fontspec id="39" size="133" family="Times" color="#eaa410"/>
+  <fontspec id="40" size="37" family="Times" color="#231f20"/>
+  <fontspec id="41" size="25" family="Times" color="#231f20"/>
+  <fontspec id="42" size="79" family="Times" color="#231f20"/>
+  <fontspec id="43" size="133" family="Times" color="#231f20"/>
+  <fontspec id="44" size="38" family="Times" color="#231f20"/>
+  <fontspec id="45" size="25" family="Times" color="#f0481c"/>
+  <fontspec id="46" size="46" family="Times" color="#231f20"/>
+  <fontspec id="47" size="22" family="Times" color="#231f20"/>
+  <fontspec id="48" size="14" family="Times" color="#f0481c"/>
+  <fontspec id="49" size="38" family="Times" color="#231f20"/>
+  <fontspec id="50" size="38" family="Times" color="#d40f41"/>
+  <fontspec id="51" size="17" family="Times" color="#231f20"/>
+  <fontspec id="52" size="11" family="Times" color="#ffffff"/>
+  <fontspec id="53" size="29" family="Times" color="#231f20"/>
+  <fontspec id="54" size="17" family="Times" color="#f0481c"/>
+  <fontspec id="55" size="5" family="Times" color="#231f20"/>
+<image top="2135" left="885" width="72" height="45" src="index-1_1.png"/>
+<image top="1723" left="121" width="263" height="193" src="index-1_2.png"/>
+<image top="1723" left="384" width="683" height="49" src="index-1_3.png"/>
+<image top="1771" left="384" width="53" height="241" src="index-1_4.png"/>
+<image top="1771" left="1014" width="53" height="241" src="index-1_5.png"/>
+<image top="1915" left="121" width="263" height="96" src="index-1_6.png"/>
+<image top="1963" left="436" width="578" height="49" src="index-1_7.png"/>
+<image top="1774" left="547" width="-155" height="238" src="index-1_8.png"/>
+<image top="1726" left="1066" width="-673" height="48" src="index-1_9.png"/>
+<image top="1774" left="703" width="-155" height="238" src="index-1_10.png"/>
+<image top="1774" left="858" width="-155" height="238" src="index-1_11.png"/>
+<image top="1774" left="1014" width="-155" height="238" src="index-1_12.png"/>
+<image top="1774" left="1066" width="-51" height="238" src="index-1_13.png"/>
+<image top="2018" left="122" width="944" height="95" src="index-1_14.png"/>
+<image top="1411" left="387" width="196" height="207" src="index-1_15.png"/>
+<image top="1449" left="352" width="203" height="210" src="index-1_16.png"/>
+<image top="1439" left="946" width="103" height="199" src="index-1_17.png"/>
+<image top="1463" left="857" width="103" height="199" src="index-1_18.png"/>
+<image top="1141" left="441" width="102" height="50" src="index-1_19.png"/>
+<image top="1141" left="543" width="102" height="50" src="index-1_20.png"/>
+<image top="1141" left="645" width="102" height="50" src="index-1_21.png"/>
+<image top="1190" left="441" width="102" height="50" src="index-1_22.png"/>
+<image top="1190" left="543" width="102" height="50" src="index-1_23.png"/>
+<image top="1190" left="645" width="102" height="50" src="index-1_24.png"/>
+<image top="1240" left="441" width="102" height="50" src="index-1_25.png"/>
+<image top="1240" left="543" width="102" height="50" src="index-1_26.png"/>
+<image top="1240" left="645" width="102" height="50" src="index-1_27.png"/>
+<image top="1289" left="441" width="102" height="50" src="index-1_28.png"/>
+<image top="1289" left="543" width="102" height="50" src="index-1_29.png"/>
+<image top="1289" left="645" width="102" height="50" src="index-1_30.png"/>
+<image top="1141" left="377" width="51" height="91" src="index-1_31.png"/>
+<image top="1186" left="121" width="102" height="46" src="index-1_32.png"/>
+<image top="1186" left="223" width="102" height="46" src="index-1_33.png"/>
+<image top="1186" left="326" width="51" height="91" src="index-1_34.png"/>
+<image top="1232" left="121" width="102" height="46" src="index-1_35.png"/>
+<image top="1232" left="223" width="102" height="46" src="index-1_36.png"/>
+<image top="1232" left="377" width="51" height="91" src="index-1_37.png"/>
+<image top="1277" left="121" width="102" height="46" src="index-1_38.png"/>
+<image top="1277" left="223" width="102" height="46" src="index-1_39.png"/>
+<image top="1277" left="326" width="51" height="46" src="index-1_40.png"/>
+<image top="1152" left="118" width="4" height="44" src="index-1_41.png"/>
+<image top="1152" left="121" width="96" height="43" src="index-1_42.png"/>
+<image top="1152" left="217" width="96" height="43" src="index-1_43.png"/>
+<image top="1430" left="600" width="129" height="75" src="index-1_44.png"/>
+<image top="1442" left="610" width="109" height="51" src="index-1_45.png"/>
+<image top="1137" left="439" width="127" height="73" src="index-1_46.png"/>
+<image top="1141" left="441" width="85" height="69" src="index-1_47.png"/>
+<image top="1141" left="526" width="43" height="69" src="index-1_48.png"/>
+<image top="1148" left="450" width="105" height="51" src="index-1_49.png"/>
+<image top="1252" left="193" width="147" height="35" src="index-1_50.png"/>
+<image top="1287" left="193" width="147" height="35" src="index-1_51.png"/>
+<image top="1263" left="205" width="122" height="47" src="index-1_52.png"/>
+<image top="1265" left="128" width="68" height="53" src="index-1_53.png"/>
+<image top="1265" left="193" width="7" height="53" src="index-1_54.png"/>
+<image top="1494" left="701" width="105" height="110" src="index-1_55.png"/>
+<image top="1517" left="622" width="107" height="110" src="index-1_56.png"/>
+<image top="1141" left="760" width="191" height="130" src="index-1_57.png"/>
+<image top="1146" left="766" width="179" height="119" src="index-1_58.png"/>
+<image top="1148" left="901" width="159" height="162" src="index-1_59.png"/>
+<image top="1498" left="182" width="155" height="116" src="index-1_60.png"/>
+<image top="1435" left="132" width="101" height="192" src="index-1_61.png"/>
+<image top="1431" left="121" width="111" height="73" src="index-1_62.png"/>
+<image top="1435" left="132" width="101" height="67" src="index-1_63.png"/>
+<image top="1442" left="131" width="91" height="50" src="index-1_64.png"/>
+<image top="337" left="796" width="271" height="798" src="index-1_65.png"/>
+<image top="337" left="121" width="52" height="532" src="index-1_66.png"/>
+<image top="337" left="745" width="52" height="797" src="index-1_67.png"/>
+<image top="496" left="173" width="208" height="213" src="index-1_68.png"/>
+<image top="496" left="381" width="208" height="213" src="index-1_69.png"/>
+<image top="496" left="589" width="156" height="266" src="index-1_70.png"/>
+<image top="709" left="173" width="260" height="160" src="index-1_71.png"/>
+<image top="709" left="433" width="156" height="266" src="index-1_72.png"/>
+<image top="762" left="589" width="156" height="266" src="index-1_73.png"/>
+<image top="868" left="381" width="52" height="266" src="index-1_74.png"/>
+<image top="975" left="433" width="156" height="160" src="index-1_75.png"/>
+<image top="1028" left="589" width="156" height="107" src="index-1_76.png"/>
+<image top="337" left="121" width="945" height="1" src="index-1_77.png"/>
+<image top="337" left="796" width="91" height="532" src="index-1_78.png"/>
+<image top="337" left="886" width="180" height="54" src="index-1_79.png"/>
+<image top="390" left="1021" width="45" height="744" src="index-1_80.png"/>
+<image top="709" left="886" width="136" height="319" src="index-1_81.png"/>
+<image top="868" left="796" width="91" height="266" src="index-1_82.png"/>
+<image top="1028" left="886" width="136" height="107" src="index-1_83.png"/>
+<image top="336" left="130" width="636" height="2" src="index-1_84.png"/>
+<image top="337" left="130" width="265" height="164" src="index-1_85.png"/>
+<image top="337" left="395" width="265" height="164" src="index-1_86.png"/>
+<image top="337" left="659" width="106" height="164" src="index-1_87.png"/>
+<image top="819" left="103" width="292" height="334" src="index-1_88.png"/>
+<image top="1141" left="316" width="78" height="11" src="index-1_89.png"/>
+<image top="1153" left="118" width="198" height="-15" src="index-1_90.png"/>
+<image top="1141" left="121" width="194" height="12" src="index-1_91.png"/>
+<image top="1146" left="134" width="27" height="6" src="index-1_92.png"/>
+<image top="1146" left="311" width="84" height="6" src="index-1_93.png"/>
+<image top="1151" left="316" width="14" height="2" src="index-1_94.png"/>
+<image top="819" left="121" width="228" height="210" src="index-1_95.png"/>
+<image top="819" left="349" width="46" height="315" src="index-1_96.png"/>
+<image top="1029" left="121" width="228" height="105" src="index-1_97.png"/>
+<image top="344" left="1059" width="-129" height="157" src="index-1_98.png"/>
+<image top="344" left="929" width="-86" height="262" src="index-1_99.png"/>
+<image top="501" left="1059" width="-129" height="157" src="index-1_100.png"/>
+<image top="605" left="929" width="-86" height="105" src="index-1_101.png"/>
+<image top="657" left="1059" width="-129" height="53" src="index-1_102.png"/>
+<image top="624" left="893" width="35" height="39" src="index-1_103.png"/>
+<image top="663" left="858" width="35" height="39" src="index-1_104.png"/>
+<image top="624" left="856" width="72" height="41" src="index-1_105.png"/>
+<image top="661" left="858" width="72" height="41" src="index-1_106.png"/>
+<image top="700" left="854" width="77" height="-71" src="index-1_107.png"/>
+<image top="702" left="857" width="38" height="-2" src="index-1_108.png"/>
+<image top="629" left="890" width="39" height="-3" src="index-1_109.png"/>
+<text top="1135" left="1127" width="23" height="14" font="0"><b>FOLD</b></text>
+<text top="33" left="1131" width="96" height="40" font="1"><b>0219 Ad</b></text>
+<text top="74" left="1131" width="103" height="40" font="1"><b>Week 52</b></text>
+<text top="108" left="1131" width="107" height="40" font="1"><b>7-Day Ad</b></text>
+<text top="149" left="1131" width="83" height="40" font="1"><b>Page 1</b></text>
+<text top="191" left="1131" width="59" height="40" font="1"><b>Final</b></text>
+<text top="226" left="1131" width="179" height="38" font="2">Haggen Version</text>
+<text top="260" left="1131" width="89" height="38" font="2">In Store</text>
+<text top="294" left="1131" width="158" height="40" font="1"><b>Whatcom Co.</b></text>
+<text top="329" left="1131" width="157" height="38" font="2">(3430, 3439, </text>
+<text top="364" left="1131" width="148" height="38" font="2">3449, 3460, </text>
+<text top="398" left="1131" width="68" height="38" font="2">3493)</text>
+<text top="454" left="1131" width="192" height="21" font="3">0219P1-H-3430, 3439, 3449, 3460, 3493 InStore</text>
+<text top="476" left="1131" width="161" height="21" font="3">February 7, 2020 3:30 PM</text>
+<text top="1585" left="1315" width="0" height="36" font="4"><b>CONFIDENTIAL INFORMA</b></text>
+<text top="1346" left="1315" width="0" height="36" font="4"><b>TION • INTERNAL USE ONL</b></text>
+<text top="1090" left="1315" width="0" height="36" font="4"><b>Y • SHRED AFTER USE</b></text>
+<text top="1801" left="1238" width="0" height="17" font="5">Merchandising. Sign-Offs:   Meat_______</text>
+<text top="1573" left="1238" width="0" height="17" font="5"> Seafood_______</text>
+<text top="1472" left="1238" width="0" height="17" font="5"> Produce_______</text>
+<text top="1370" left="1238" width="0" height="17" font="5"> Delicatessen_______</text>
+<text top="1243" left="1238" width="0" height="17" font="5"> Bakery_______</text>
+<text top="1149" left="1238" width="0" height="17" font="5"> Floral/Garden</text>
+<text top="1070" left="1238" width="0" height="17" font="5"> _____</text>
+<text top="1024" left="1238" width="0" height="17" font="5"> Joel_______</text>
+<text top="944" left="1238" width="0" height="17" font="5"> Pam_______ </text>
+<text top="857" left="1238" width="0" height="17" font="5"> </text>
+<text top="1801" left="1274" width="0" height="17" font="5">Trevor (DD)_______</text>
+<text top="1690" left="1274" width="0" height="17" font="5"> T</text>
+<text top="1678" left="1274" width="0" height="17" font="5">revor (Groc)_______</text>
+<text top="1564" left="1274" width="0" height="17" font="5"> Ron (Froz)_______ Ron (Groc)_______ Ron (NonFood) _______ Jeff (Groc) _______ Jeff (Candy) _______ Dale _______ Bulk _______  </text>
+<text top="794" left="1274" width="0" height="17" font="5">Other: _________</text>
+<text top="2203" left="1250" width="0" height="18" font="6"><b>PRODUCTION USE ONL</b></text>
+<text top="2072" left="1250" width="0" height="18" font="6"><b>Y:</b></text>
+<text top="2203" left="1280" width="0" height="19" font="7"><i><b>Anything </b></i></text>
+<text top="2153" left="1280" width="0" height="19" font="7"><i><b> </b></i></text>
+<text top="2203" left="1295" width="0" height="19" font="7"><i><b>Missing:</b></i></text>
+<text top="1983" left="1250" width="0" height="17" font="5">Production</text>
+<text top="1927" left="1250" width="0" height="17" font="5"> _____________</text>
+<text top="1983" left="1280" width="0" height="17" font="5">Proofer</text>
+<text top="1946" left="1280" width="0" height="17" font="5"> ________________</text>
+<text top="1983" left="1310" width="0" height="17" font="5">PDF Cropped</text>
+<text top="1916" left="1310" width="0" height="17" font="5"> ____________</text>
+<text top="2121" left="1283" width="0" height="17" font="5"> </text>
+<text top="2113" left="1283" width="0" height="23" font="8"><b>YES</b></text>
+<text top="2091" left="1283" width="0" height="17" font="5"> </text>
+<text top="2121" left="1313" width="0" height="17" font="5"> </text>
+<text top="2113" left="1313" width="0" height="23" font="8"><b>NO</b></text>
+<text top="2098" left="1313" width="0" height="17" font="5"> (Page Complete)</text>
+<text top="2126" left="143" width="418" height="46" font="9"><b>PRICES VALID FEBRUARY 19–25, 2020 </b></text>
+<text top="2164" left="143" width="545" height="25" font="10"><b>at Meridian, Fairhaven, Sehome, Barkley and Ferndale Haggen Food &amp; Pharmacy stores.</b></text>
+<text top="2189" left="143" width="443" height="14" font="11"><b>Find us online at www.haggen.com for store hours and locations. Follow us on Facebook and Twitter. We reserve the right </b></text>
+<text top="2201" left="143" width="463" height="14" font="11"><b>to limit quantities. Items available while supplies last. Some items may not be available at all stores. Printed on recycled paper.</b></text>
+<text top="2183" left="993" width="37" height="14" font="11"><b>We Accept</b></text>
+<text top="2194" left="993" width="37" height="14" font="11"><b>Apple Pay</b></text>
+<text top="2183" left="887" width="71" height="14" font="11"><b>All prices in this ad </b></text>
+<text top="2194" left="886" width="72" height="14" font="11"><b>are good with your </b></text>
+<text top="2204" left="895" width="52" height="14" font="11"><b>Haggen CARD.</b></text>
+<text top="116" left="788" width="212" height="21" font="12"><b>MADE RIGHT HERE</b></text>
+<text top="135" left="799" width="198" height="68" font="13">Always Fresh</text>
+<text top="244" left="754" width="283" height="29" font="14"><b>Freshness All Around</b></text>
+<text top="274" left="774" width="243" height="29" font="14"><b>Look for the Signs</b></text>
+<text top="1757" left="431" width="123" height="12" font="15"><b>MADE RIGHT HERE</b></text>
+<text top="1768" left="437" width="115" height="39" font="16">Always Fresh</text>
+<text top="2015" left="215" width="343" height="101" font="17">Caus e      Paws</text>
+<text top="2027" left="374" width="49" height="60" font="18">for </text>
+<text top="2058" left="372" width="42" height="39" font="19"></text>
+<text top="2060" left="601" width="271" height="20" font="20"><b>Make a monetary donation at any register or </b></text>
+<text top="2076" left="600" width="273" height="20" font="20"><b>donate new, unopened pet food and supplies. </b></text>
+<text top="2025" left="655" width="160" height="39" font="21">FeB 19–mAr 3</text>
+<text top="2083" left="369" width="192" height="19" font="22">BeNeFiTiNg lOcAl aNiMaLs iN nEeD</text>
+<text top="2027" left="906" width="142" height="20" font="23"><b>Your donation provides </b></text>
+<text top="2043" left="924" width="105" height="20" font="23"><b>food, shelter and </b></text>
+<text top="2059" left="905" width="145" height="20" font="23"><b>veterinary care to local </b></text>
+<text top="2075" left="926" width="102" height="20" font="23"><b>animals in need. </b></text>
+<text top="1319" left="128" width="112" height="25" font="24"><b>Bottom Round </b></text>
+<text top="1340" left="128" width="120" height="25" font="24"><b>Roast or Steaks</b></text>
+<text top="1366" left="128" width="144" height="16" font="25">Raised on family-owned farms</text>
+<text top="1381" left="128" width="118" height="16" font="25">in the Pacifi c Northwest. </text>
+<text top="1396" left="128" width="86" height="16" font="25">Value Pack Steaks</text>
+<text top="1334" left="448" width="145" height="25" font="24"><b>Whole Wild Popsie </b></text>
+<text top="1355" left="448" width="125" height="25" font="24"><b>Sockeye Salmon</b></text>
+<text top="1381" left="448" width="119" height="16" font="25">Frozen at the peak of the </text>
+<text top="1396" left="448" width="100" height="16" font="25">season for freshness.</text>
+<text top="1321" left="329" width="19" height="53" font="26">$</text>
+<text top="1316" left="350" width="32" height="88" font="27">3</text>
+<text top="1321" left="383" width="47" height="53" font="26">99 </text>
+<text top="1367" left="402" width="19" height="26" font="28">Lb</text>
+<text top="1391" left="320" width="101" height="21" font="29">SaVe Up tO $2 Lb</text>
+<text top="1321" left="649" width="19" height="53" font="26">$</text>
+<text top="1316" left="669" width="32" height="88" font="27">6</text>
+<text top="1321" left="703" width="47" height="53" font="26">99 </text>
+<text top="1367" left="722" width="19" height="26" font="28">Lb</text>
+<text top="1391" left="639" width="101" height="21" font="29">SaVe Up tO $2 lB</text>
+<text top="1160" left="327" width="75" height="28" font="30">AlwayS fresH</text>
+<text top="1277" left="767" width="122" height="25" font="24"><b>12-Pack Mike’s </b></text>
+<text top="1298" left="767" width="145" height="25" font="24"><b>Hard Lemonade or </b></text>
+<text top="1319" left="767" width="89" height="25" font="24"><b>White Claw </b></text>
+<text top="1340" left="767" width="94" height="25" font="24"><b>Hard Seltzer</b></text>
+<text top="1366" left="767" width="108" height="16" font="25">11.2 oz Bottles Mike’s  </text>
+<text top="1381" left="767" width="107" height="16" font="25">12 oz Cans White Claw</text>
+<text top="1396" left="767" width="83" height="16" font="25">Selected Varieties</text>
+<text top="1321" left="939" width="19" height="53" font="26">$</text>
+<text top="1317" left="959" width="61" height="88" font="27">15</text>
+<text top="1321" left="1021" width="47" height="53" font="26">99 </text>
+<text top="1367" left="1040" width="19" height="26" font="28">Ea</text>
+<text top="1391" left="939" width="121" height="21" font="29">SaVe Up tO $6.50 eA</text>
+<text top="1670" left="368" width="89" height="20" font="31"><b>Oroweat Bread</b></text>
+<text top="1692" left="368" width="108" height="14" font="32">24 oz • Selected Varieties</text>
+<text top="1670" left="847" width="134" height="20" font="31"><b>Juanita’s Tortilla Chips</b></text>
+<text top="1692" left="847" width="108" height="14" font="32">15 oz • Selected Varieties</text>
+<text top="1642" left="995" width="41" height="37" font="33">2/$</text>
+<text top="1639" left="1037" width="23" height="62" font="34">4</text>
+<text top="1691" left="976" width="83" height="15" font="35">SaVe Up tO $1.19 eA</text>
+<text top="1654" left="608" width="61" height="20" font="31"><b>Tillamook </b></text>
+<text top="1670" left="608" width="135" height="20" font="31"><b>Good &amp; Creamy Yogurt</b></text>
+<text top="1692" left="608" width="102" height="14" font="32">6 oz • Selected Varieties</text>
+<text top="1642" left="743" width="54" height="37" font="33">10/$</text>
+<text top="1639" left="798" width="23" height="62" font="34">5</text>
+<text top="1691" left="743" width="77" height="15" font="35">SaVe Up tO 29¢ eA</text>
+<text top="1642" left="516" width="41" height="37" font="33">2/$</text>
+<text top="1639" left="558" width="23" height="62" font="34">4</text>
+<text top="1691" left="495" width="85" height="15" font="35">SaVe Up tO $3.29 eA</text>
+<text top="1630" left="128" width="104" height="20" font="31"><b>Starbucks Coffee</b></text>
+<text top="1651" left="128" width="79" height="14" font="32">10–12 oz Pre-Pack</text>
+<text top="1665" left="128" width="71" height="14" font="32">10 Count K-Cups</text>
+<text top="1678" left="128" width="74" height="14" font="32">Selected Varieties</text>
+<text top="1692" left="128" width="89" height="14" font="32">Single Price $7.99 ea</text>
+<text top="1629" left="277" width="14" height="37" font="33">$</text>
+<text top="1625" left="289" width="23" height="62" font="34">5</text>
+<text top="1629" left="313" width="33" height="37" font="33">99 </text>
+<text top="1661" left="327" width="14" height="19" font="36">Ea</text>
+<text top="1677" left="255" width="86" height="16" font="37"><b>WHEN YOU BUY 3</b></text>
+<text top="1691" left="269" width="72" height="15" font="35">SaVe uP tO $4 eA</text>
+<text top="343" left="141" width="593" height="190" font="38">Citrus  Sale!</text>
+<text top="340" left="139" width="593" height="190" font="39">Citrus  Sale!</text>
+<text top="855" left="147" width="136" height="47" font="40"><b>Heirloom </b></text>
+<text top="894" left="147" width="204" height="47" font="40"><b>Navel Oranges</b></text>
+<text top="941" left="147" width="149" height="29" font="41">BeE SwEeT FaRmS</text>
+<text top="967" left="147" width="32" height="88" font="42">$</text>
+<text top="959" left="181" width="53" height="146" font="43">1</text>
+<text top="967" left="229" width="78" height="88" font="42">29 </text>
+<text top="1044" left="263" width="31" height="44" font="44">Lb</text>
+<text top="1083" left="147" width="151" height="29" font="45">SaVe uP tO 70¢ Lb</text>
+<text top="1046" left="985" width="14" height="37" font="33">$</text>
+<text top="1042" left="999" width="23" height="62" font="34">1</text>
+<text top="1046" left="1020" width="33" height="37" font="33">49 </text>
+<text top="1078" left="1033" width="13" height="19" font="36">Lb</text>
+<text top="1095" left="975" width="71" height="15" font="35">SaVe Up tO $1 Lb</text>
+<text top="1061" left="855" width="114" height="20" font="31"><b>Cara Cara Oranges</b></text>
+<text top="1082" left="855" width="53" height="14" font="32">Medium Size</text>
+<text top="1096" left="855" width="70" height="14" font="32">California Grown</text>
+<text top="891" left="855" width="99" height="20" font="31"><b>Sumo Mandarins</b></text>
+<text top="912" left="855" width="67" height="14" font="32">Extra Large Size</text>
+<text top="926" left="855" width="70" height="14" font="32">California Grown</text>
+<text top="876" left="982" width="14" height="37" font="33">$</text>
+<text top="872" left="996" width="23" height="62" font="34">3</text>
+<text top="876" left="1020" width="33" height="37" font="33">99 </text>
+<text top="908" left="1033" width="13" height="19" font="36">Lb</text>
+<text top="925" left="975" width="71" height="15" font="35">SaVe Up tO $2 Lb</text>
+<text top="985" left="855" width="83" height="20" font="31"><b>Moro Oranges</b></text>
+<text top="1006" left="855" width="70" height="14" font="32">California Grown</text>
+<text top="957" left="985" width="14" height="37" font="33">$</text>
+<text top="953" left="999" width="23" height="62" font="34">1</text>
+<text top="957" left="1020" width="33" height="37" font="33">79 </text>
+<text top="989" left="1033" width="13" height="19" font="36">Lb</text>
+<text top="1006" left="962" width="84" height="15" font="35">SaVe Up tO $1.20 Lb</text>
+<text top="759" left="973" width="19" height="53" font="46">$</text>
+<text top="754" left="993" width="32" height="88" font="42">4</text>
+<text top="805" left="1027" width="19" height="26" font="47">Ea</text>
+<text top="831" left="943" width="103" height="18" font="48">SaVe Up tO $2.99 Ea</text>
+<text top="640" left="868" width="53" height="48" font="49">New!</text>
+<text top="639" left="867" width="53" height="48" font="50">New!</text>
+<text top="705" left="855" width="171" height="25" font="24"><b>MandaRosa Mandarins</b></text>
+<text top="731" left="855" width="113" height="21" font="51">HaGgEn ExClUsIvE</text>
+<text top="750" left="855" width="78" height="21" font="51">2-PoUnD BaG</text>
+<text top="773" left="855" width="85" height="16" font="25">A sweet and juicy </text>
+<text top="788" left="855" width="79" height="16" font="25">cross between a </text>
+<text top="803" left="855" width="87" height="16" font="25">Blood Orange and </text>
+<text top="818" left="855" width="65" height="16" font="25">a Clementine.</text>
+<text top="833" left="855" width="79" height="16" font="25">California Grown</text>
+<text top="1269" left="459" width="64" height="16" font="52"><b>We will steak</b></text>
+<text top="1282" left="461" width="61" height="16" font="52"><b>or fillet, skin</b></text>
+<text top="1296" left="461" width="62" height="16" font="52"><b>and package</b></text>
+<text top="1309" left="466" width="55" height="16" font="52"><b>it for FREE!</b></text>
+<text top="1761" left="142" width="93" height="38" font="53"><b>Haggen </b></text>
+<text top="1792" left="142" width="147" height="38" font="53"><b>Pasta Salads</b></text>
+<text top="1830" left="142" width="242" height="21" font="3">Dinner is a snap with these satisfying </text>
+<text top="1848" left="142" width="288" height="21" font="3">pasta salads that are scratch-made in store.  </text>
+<text top="1869" left="155" width="88" height="21" font="3">• Greek Pasta</text>
+<text top="1890" left="155" width="105" height="21" font="3">• Tortellini Pesto</text>
+<text top="1911" left="155" width="104" height="21" font="3">• Spinach Pasta</text>
+<text top="1932" left="155" width="103" height="21" font="3">• Seafood Pasta</text>
+<text top="1953" left="155" width="73" height="21" font="3">• Antipasto</text>
+<text top="1974" left="155" width="125" height="21" font="3">• BLT &amp; Basil Pasta</text>
+<text top="1904" left="326" width="19" height="53" font="46">$</text>
+<text top="1899" left="347" width="32" height="88" font="42">5</text>
+<text top="1904" left="380" width="47" height="53" font="46">99 </text>
+<text top="1950" left="400" width="19" height="26" font="47">Lb</text>
+<text top="1974" left="317" width="102" height="21" font="54">SaVe uP tO $4 lB</text>
+<text top="2220" left="1073" width="0" height="9" font="55">02</text>
+<text top="2214" left="1073" width="0" height="9" font="55">19</text>
+<text top="2207" left="1073" width="0" height="9" font="55">20</text>
+<text top="2200" left="1073" width="0" height="9" font="55">_I</text>
+<text top="2194" left="1073" width="0" height="9" font="55">nS</text>
+<text top="2187" left="1073" width="0" height="9" font="55">to</text>
+<text top="2182" left="1073" width="0" height="9" font="55">re H</text>
+<text top="2171" left="1073" width="0" height="9" font="55">-3</text>
+<text top="2165" left="1073" width="0" height="9" font="55">43</text>
+<text top="2158" left="1073" width="0" height="9" font="55">0, 3</text>
+<text top="2147" left="1073" width="0" height="9" font="55">43</text>
+<text top="2140" left="1073" width="0" height="9" font="55">9, 3</text>
+<text top="2130" left="1073" width="0" height="9" font="55">44</text>
+<text top="2123" left="1073" width="0" height="9" font="55">9, 3</text>
+<text top="2112" left="1073" width="0" height="9" font="55">46</text>
+<text top="2105" left="1073" width="0" height="9" font="55">0, 3</text>
+<text top="2095" left="1073" width="0" height="9" font="55">49</text>
+<text top="2088" left="1073" width="0" height="9" font="55">3 • ©</text>
+<text top="2071" left="1073" width="0" height="9" font="55">20</text>
+<text top="2064" left="1073" width="0" height="9" font="55">20 H</text>
+<text top="2052" left="1073" width="0" height="9" font="55">ag</text>
+<text top="2045" left="1073" width="0" height="9" font="55">ge</text>
+<text top="2038" left="1073" width="0" height="9" font="55">n</text>
+</page>
+</pdf2xml>

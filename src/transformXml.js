@@ -91,8 +91,8 @@ export default async (event) => {
      rect.yy = rect.yy - 10
     }
 
-    rect.width  = Math.floor(Math.abs(rect.xx - rect.x) * scale)
-    rect.height = Math.floor(Math.abs(rect.yy - rect.y) * scale)
+    rect.width  = Math.floor(Math.abs(rect.xx - rect.x))
+    rect.height = Math.floor(Math.abs(rect.yy - rect.y))
     return rect
   }
 
@@ -139,59 +139,45 @@ export default async (event) => {
     page.number = Number(page.$.number)
     page.src    = `jpeg-1400-page-${page.number}.jpg`
     page.uuid   = uuid()
+    page.scale  = 1400 / page.oldsize.width
+    page.width  = 1400
+    page.height = Math.floor(page.scale * page.oldsize.height)
 
-    if (page.oldsize.width > 0) {
-      page.scale  = 1400 / page.oldsize.width
-      page.width  = 1400
-      page.height = Math.floor(page.scale * page.oldsize.height)
-    }
-
-    if (!mcBox.scale) {
+    if (!mcBox.scale && (mcBox.CropBox.x > 0 || mcBox.CropBox.y > 0)) {
       if ((mcBox.CropBox.width !== mcBox.MediaBox.width) || (mcBox.CropBox.height !== mcBox.MediaBox.height)) {
 
         // this should be around 1.5 pixels to 1 pt/point but we calculate it anyway
         mcBox.scale = {
-          top: 1,
-          left: 1,
-          width: page.oldsize.width / mcBox.MediaBox.width,
-          height: page.oldsize.height / mcBox.MediaBox.height
-        }
-
-        // calculate new cropbox dimension (for width, then height)
-        // if width if bigger
-        if (mcBox.MediaBox.width > mcBox.CropBox.width) {
-          // use to scale our height later (yes - height)
-          mcBox.scale.top = mcBox.MediaBox.width / mcBox.CropBox.width
-        }
-
-        if (mcBox.MediaBox.height > mcBox.CropBox.height) {
-          // use to scale our width later
-          mcBox.scale.left = mcBox.MediaBox.height / mcBox.CropBox.height
-        }
-
-        // calculate the border to subtract later
-        mcBox.border = {
-          left: (mcBox.CropBox.x - mcBox.MediaBox.x) * mcBox.scale.width,
-          top: (mcBox.CropBox.y - mcBox.MediaBox.y) * mcBox.scale.height,
-          right: (mcBox.MediaBox.xx - mcBox.CropBox.xx) * mcBox.scale.width,
-          bottom: (mcBox.MediaBox.yy - mcBox.CropBox.yyy)  * mcBox.scale.height
+          pwidth: page.oldsize.width / mcBox.MediaBox.width,
+          pheight: page.oldsize.height / mcBox.MediaBox.height,
+          width: mcBox.MediaBox.width / mcBox.CropBox.width,
+          height: mcBox.MediaBox.height / mcBox.CropBox.height
         }
 
         // calculate the pixel moving value for the CropBox
         mcBox.CropBoxPixel = {
-          x: mcBox.CropBox.x * mcBox.scale.width,
-          y: mcBox.CropBox.y * mcBox.scale.height,
-          xx: mcBox.CropBox.xx * mcBox.scale.width,
-          yy: mcBox.CropBox.yy * mcBox.scale.height
+          x: mcBox.CropBox.x * mcBox.scale.pwidth,
+          y: mcBox.CropBox.y * mcBox.scale.pheight,
+          xx: mcBox.CropBox.xx * mcBox.scale.pwidth,
+          yy: mcBox.CropBox.yy * mcBox.scale.pheight
         }
 
         mcBox.MediaBoxPixel = {
-          x: mcBox.MediaBox.x * mcBox.scale.width,
-          y: mcBox.MediaBox.y * mcBox.scale.height,
-          xx: mcBox.MediaBox.xx * mcBox.scale.width,
-          yy: mcBox.MediaBox.yy * mcBox.scale.height
+          x: mcBox.MediaBox.x * mcBox.scale.pwidth,
+          y: mcBox.MediaBox.y * mcBox.scale.pheight,
+          xx: mcBox.MediaBox.xx * mcBox.scale.pwidth,
+          yy: mcBox.MediaBox.yy * mcBox.scale.pheight
         }
 
+        // calculate the border to subtract later
+        mcBox.border = {
+          left: mcBox.CropBoxPixel.x,
+          top: mcBox.CropBoxPixel.y,
+          right: mcBox.MediaBoxPixel.xx - mcBox.CropBoxPixel.xx,
+          bottom: mcBox.MediaBoxPixel.yy - mcBox.CropBoxPixel.yy
+        }
+
+        debug(mcBox)
       }
     }
 
@@ -291,23 +277,26 @@ export default async (event) => {
   pages.forEach(p => {
     if (mcBox.scale) {
       p.oldsize.widthx  = p.oldsize.width
-      p.oldsize.heightx = p.oldsize.height * mcBox.scale.top
-      p.oldsize.width   = Math.ceil(p.oldsize.width * mcBox.scale.left)
-      p.oldsize.height  = Math.ceil(p.oldsize.height * mcBox.scale.top)
-      p.widthx          = p.width
-      p.heightx         = p.height
-      p.width           = Math.ceil(p.width * mcBox.scale.left)
-      p.height          = Math.ceil(p.height * mcBox.scale.top)
+      p.oldsize.heightx = p.oldsize.height
+      p.oldsize.width   = p.width
+      p.oldsize.height  = p.height
+      p.width           = Math.ceil(p.width * mcBox.scale.height)
+      p.height          = Math.ceil(p.height * mcBox.scale.width)
+      p.oldsize.scaley  = p.width / p.oldsize.width
+      p.oldsize.scalex  = p.height / p.oldsize.height
+      p.oldsize.scale   = p.oldsize.scalex > 1 ? p.oldsize.scalex : p.oldsize.scaley
     }
 
     // adjust the location
     p.items.forEach((i) => {
       if (mcBox.scale) {
         // move x left, y up, xx right, yy down
-        i.rect.x = (i.rect.x - mcBox.CropBoxPixel.x) * mcBox.scale.left + mcBox.border.left
-        i.rect.y = (i.rect.y - mcBox.CropBoxPixel.y) * mcBox.scale.top + mcBox.border.top
-        i.rect.xx = (i.rect.xx + (mcBox.MediaBoxPixel.xx - mcBox.CropBoxPixel.xx)) * mcBox.scale.left - (mcBox.border.left + mcBox.border.right)
-        i.rect.yy = (i.rect.yy + (mcBox.MediaBoxPixel.yy - mcBox.CropBoxPixel.yy)) * mcBox.scale.top - (mcBox.border.top + mcBox.border.bottom)
+        i.rect.x = (i.rect.x - mcBox.border.left) * p.oldsize.scale
+        i.rect.y = (i.rect.y - mcBox.border.top) * p.oldsize.scale
+        i.rect.xx = (i.rect.xx - mcBox.border.left) * p.oldsize.scale
+        i.rect.yy = (i.rect.yy - mcBox.border.top) * p.oldsize.scale
+        i.rect.width = i.rect.xx - i.rect.x
+        i.rect.height = i.rect.yy - i.rect.y
       }
 
       rectToScale(i.rect, p.scale, p.width, p.height)
@@ -316,10 +305,12 @@ export default async (event) => {
     p.lines.forEach((i) => {
       if (mcBox.scale) {
         // move x left, y up, xx right, yy down
-        i.rect.x = (i.rect.x - mcBox.CropBoxPixel.x) * mcBox.scale.left + mcBox.border.left
-        i.rect.y = (i.rect.y - mcBox.CropBoxPixel.y) * mcBox.scale.top + mcBox.border.top
-        i.rect.xx = (i.rect.xx + (mcBox.MediaBoxPixel.xx - mcBox.CropBoxPixel.xx)) * (mcBox.border.left + mcBox.border.right)
-        i.rect.yy = (i.rect.yy + (mcBox.MediaBoxPixel.yy - mcBox.CropBoxPixel.yy)) * (mcBox.border.top + mcBox.border.bottom)
+        i.rect.x = (i.rect.x - mcBox.border.left) * p.oldsize.scale
+        i.rect.y = (i.rect.y - mcBox.border.top) * p.oldsize.scale
+        i.rect.xx = (i.rect.xx - mcBox.border.left) * p.oldsize.scale
+        i.rect.yy = (i.rect.yy - mcBox.border.top) * p.oldsize.scale
+        i.rect.width = i.rect.xx - i.rect.x
+        i.rect.height = i.rect.yy - i.rect.y
       }
 
       rectToScale(i.rect, p.scale, p.width, p.height)
