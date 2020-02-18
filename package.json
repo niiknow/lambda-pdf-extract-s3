@@ -1,6 +1,6 @@
 {
   "name": "lambda-pdfxs3",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "description": "Monitor some s3 bucket for pdf upload and extract to another bucket",
   "main": "handler.js",
   "scripts": {
@@ -38,7 +38,7 @@
     "@babel/preset-env": "^7.8.4",
     "@babel/register": "^7.8.3",
     "@babel/runtime": "^7.8.4",
-    "aws-sdk": "^2.616.0",
+    "aws-sdk": "^2.620.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-source-map-support": "^2.1.1",
     "copy-webpack-plugin": "^5.1.1",

@@ -9,9 +9,8 @@ const debug = require('debug')('lambda-pdfxs3')
  * Handle s3 event
  *
  * @param  object     event
- * @param  object     context
  */
-export default async (event, context) => {
+export default async (event) => {
   debug('Begin event...', JSON.stringify(event))
   const s3Object   = event.Records[0].s3
   const bucket     = s3Object.bucket.name
