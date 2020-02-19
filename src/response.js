@@ -1,8 +1,8 @@
 const rspHeaders = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'OPTIONS, POST',
-  'Access-Control-Allow-Headers': 'Content-Type'
+  'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+  'Access-Control-Allow-Headers': 'content-type, x-requested-with'
 }
 
 export default (rsp = null, callback = null) => {
