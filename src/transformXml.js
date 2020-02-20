@@ -211,7 +211,7 @@ export default async (event) => {
     // adjust the location
     p.items.forEach((i) => {
       if (mcBox.scale) {
-        cropScaleRect(i)
+        cropScaleRect(i, p.oldsize.scale)
       }
 
       utils.rectToScale(i.rect, p.scale, p.width, p.height)
@@ -219,7 +219,7 @@ export default async (event) => {
 
     p.lines.forEach((i) => {
       if (mcBox.scale) {
-        cropScaleRect(i)
+        cropScaleRect(i, p.oldsize.scale)
       }
 
       utils.rectToScale(i.rect, p.scale, p.width, p.height)
