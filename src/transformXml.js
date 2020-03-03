@@ -44,7 +44,8 @@ export default async (event) => {
     page.width  = scaleW
     page.height = Math.floor(page.scale * page.oldsize.height)
 
-    if (!mcBox.scale && (mcBox.CropBox.x > 0 || mcBox.CropBox.y > 0 || mcBox.CropBox.xx < mcBox.MediaBox.xx)) {
+    if (!mcBox.scale && (mcBox.CropBox.x > 0 || mcBox.CropBox.y > 0
+      || mcBox.CropBox.xx < mcBox.MediaBox.xx || mcBox.CropBox.yy < mcBox.MediaBox.yy)) {
       if ((mcBox.CropBox.width !== mcBox.MediaBox.width) || (mcBox.CropBox.height !== mcBox.MediaBox.height)) {
 
         // this should be around 1.5 pixels to 1 pt/point but we calculate it anyway
