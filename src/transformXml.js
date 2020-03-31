@@ -85,6 +85,14 @@ export default async (event) => {
 
     page.mcbox = mcBox
 
+    if (typeof(page.text) === 'undefined') {
+      page.text = []
+    }
+
+    if (typeof(page.image) === 'undefined') {
+      page.image = []
+    }
+
     // convert rect to integer
     page.image.forEach((i) => {
       i.rect = utils.rectToNumeric(i.$, page.oldsize.width - 10, page.oldsize.height - 10)
@@ -92,7 +100,6 @@ export default async (event) => {
       if (i.$.src) {
         i.src  = i.$.src
       }
-
 
       page.text.forEach((t) => {
         t.desc = t.desc || ''
