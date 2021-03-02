@@ -15,6 +15,7 @@ module.exports = {
   optimization: {
     // We do not want to minimize our code.
     minimize: false,
+    concatenateModules: false
   },
   performance: {
     // Turn off size warnings for entry points

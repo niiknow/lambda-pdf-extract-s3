@@ -25,7 +25,7 @@ beforeEach(() => {
 })
 
 describe('Transform xml to fit text to image', () => {
-  test('correctly transform page-single xml to json', async () => {
+   test('correctly transform page-single xml to json', async () => {
     const fullPath = path.resolve('./tests/data/page-single.xml');
     const rst = await handler({ xmlFile: fullPath })
     const rstFile = fullPath.replace('.xml', '-x.json')
@@ -64,5 +64,15 @@ describe('Transform xml to fit text to image', () => {
     const rstFile = fullPath.replace('.xml', '-x.json')
     const exists = fs.existsSync(rstFile)
     expect(exists).toBe(true)
+  })
+
+  test('text-only transform', async () => {
+    const fullPath = path.resolve('./tests/data/text-only.xml');
+    const rst = await handler({ xmlFile: fullPath })
+    const rstFile = fullPath.replace('.xml', '-x.json')
+    const exists = fs.existsSync(rstFile)
+    expect(exists).toBe(true)
+    expect(rst.pages).toHaveLength(1)
+    expect(rst.pages[0].lines.length > 1).toBe(true)
   })
 })

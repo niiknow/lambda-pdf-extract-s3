@@ -152,7 +152,20 @@ export default async (event) => {
     page.lines = []
     page.text.forEach((t) => {
       if (typeof(t.desc) !== 'string') {
-        return
+        // ignore if there are items
+        if (page.items.length > 0) {
+          return
+        }
+
+        // if no items, include all text
+        t.desc = ''
+
+        if (t.$) {
+          t.rect = utils.rectToNumeric(t.$, page.oldsize.width - 10, page.oldsize.height - 10)
+          delete t['$']
+        }
+
+        utils.objectToText(t, t)
       }
 
       // ignore line mapping not inside cropbox
@@ -173,7 +186,6 @@ export default async (event) => {
         desc: t.desc.trim(),
         uuid: uuid()
       })
-
     })
 
     // delete things we no longer use

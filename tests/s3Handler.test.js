@@ -1,7 +1,5 @@
 import handler from '../src/s3Handler.js'
 
-jest.setTimeout(300000)
-
 describe('s3-handler-tests', () => {
   test('correctly download and process remote pdf file', async () => {
     const rst = await handler(
