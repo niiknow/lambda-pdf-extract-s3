@@ -1,3 +1,4 @@
+const path = require('path')
 const slsw = require('serverless-webpack')
 const nodeExternals = require('webpack-node-externals')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -22,29 +23,15 @@ module.exports = {
     hints: false,
   },
   plugins: [
-    new CopyWebpackPlugin([{
-      from: 'index.sh'
-    },{
-      from: 'poppler/bin/*',
-      to: 'bin',
-      transformPath: ( targetPath ) => {
-        return targetPath.replace( 'poppler/bin/', '' );
-      }
-    },
-    {
-      from: 'poppler/bin/lib/**',
-      to: 'lib',
-      transformPath: ( targetPath ) => {
-        return targetPath.replace( 'poppler/bin/lib/', '' );
-      }
-    },
-    {
-      from: 'poppler/bin/share/**',
-      to: 'share',
-      transformPath: ( targetPath ) => {
-        return targetPath.replace( 'poppler/bin/share/', '' );
-      }
-    }]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'index.sh'
+        },{
+          from: 'poppler/bin/**/*'
+        }
+      ]
+    }),
     new WebpackPoppler()
   ],
   // Run babel on all .js files and skip those in node_modules

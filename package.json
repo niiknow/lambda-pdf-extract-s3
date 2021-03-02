@@ -1,6 +1,6 @@
 {
   "name": "lambda-pdfxs3",
-  "version": "0.9.2",
+  "version": "1.0.0",
   "description": "Monitor some s3 bucket for pdf upload and extract to another bucket",
   "main": "handler.js",
   "scripts": {
