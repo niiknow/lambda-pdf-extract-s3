@@ -1,4 +1,4 @@
-FROM amazon/aws-sam-cli-build-image-nodejs14.x
+FROM public.ecr.aws/sam/build-nodejs18.x
 LABEL maintainer="noogen <friends@niiknow.org>"
 ADD ./build-poppler.sh /
 RUN bash /build-poppler.sh
