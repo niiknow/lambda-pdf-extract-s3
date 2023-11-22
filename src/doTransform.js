@@ -1,5 +1,7 @@
-const debug = require('debug')('lambda-pdfxs3')
-const { exec }  = require('child_process')
+import { exec } from 'child_process'
+import Debug from 'debug'
+
+const debug = Debug('lambda-pdfxs3')
 
 export default ( event ) => {
   debug('executing: ', event.cmd)

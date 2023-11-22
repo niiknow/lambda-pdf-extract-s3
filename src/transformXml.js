@@ -2,8 +2,9 @@ import fs from 'fs'
 import { v4 as uuid } from 'uuid';
 import xmlToJsonAsync from './xmlToJsonAsync'
 import utils from './utils'
+import Debug from 'debug'
 
-const debug = require('debug')('lambda-pdfxs3')
+const debug = Debug('lambda-pdfxs3')
 
 /**
  * transform xml to json

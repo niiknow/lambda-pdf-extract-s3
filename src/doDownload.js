@@ -8,8 +8,9 @@ import doUpload from './doUpload'
 import doTransform from './doTransform'
 import transformXml from './transformXml'
 import res from './response'
+import Debug from 'debug'
 
-const debug = require('debug')('lambda-pdfxs3')
+const debug = Debug('lambda-pdfxs3')
 
 const cfg = {
   localpath: (process.env.LOCALPATH || '/tmp/pdf').replace(/\/+$/, ''),

@@ -1,9 +1,10 @@
 import path from 'path'
 import AWS from 'aws-sdk'
 import doDownload from './doDownload'
+import Debug from 'debug'
 
+const debug = Debug('lambda-pdfxs3')
 const s3    = new AWS.S3()
-const debug = require('debug')('lambda-pdfxs3')
 
 /**
  * Handle s3 event

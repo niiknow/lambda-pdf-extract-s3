@@ -2,12 +2,13 @@ import fs from 'fs'
 import path from 'path'
 import AWS from 'aws-sdk'
 import mime from 'mime-types'
+import asynk from 'async'
+import recursiveReadSync from 'recursive-readdir-sync'
+import Debug from 'debug'
+
+const debug = Debug('lambda-pdfxs3')
 
 const s3                = new AWS.S3()
-const asynk             = require( 'async' )
-const recursiveReadSync = require( 'recursive-readdir-sync' )
-
-const debug = require('debug')('lambda-pdfxs3')
 const cfg = {
   localpath: (process.env.LOCALPATH || '/tmp/pdf').replace(/\/+$/, ''),
   bucket: process.env.DESTBUCKET

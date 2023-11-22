@@ -1,8 +1,12 @@
 {
   "name": "lambda-pdfxs3",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Monitor some s3 bucket for pdf upload and extract to another bucket",
-  "main": "handler.js",
+  "exports": "./index.js",
+  "engines": {
+    "node": ">=16"
+  },
+  "type": "module",
   "scripts": {
     "serverless": "node_modules/.bin/serverless",
     "sls": "node_modules/.bin/serverless",
@@ -24,7 +28,7 @@
   "dependencies": {
     "async": "^3.2.5",
     "debug": "^4.3.4",
-    "got": "11.8.5",
+    "got": "13.0.0",
     "mime-types": "^2.1.35",
     "mkdirp": "^3.0.1",
     "recursive-readdir-sync": "^1.0.6",
