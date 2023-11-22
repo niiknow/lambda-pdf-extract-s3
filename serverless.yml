@@ -3,6 +3,7 @@ service: lambda-pdfxs3
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
   - serverless-webpack
+  - serverless-offline
 
 # serverless-webpack configuration
 # - this also help fix permission issue: see webpack-poppler

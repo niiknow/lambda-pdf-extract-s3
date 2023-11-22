@@ -8,7 +8,7 @@ import Debug from 'debug'
 
 const debug = Debug('lambda-pdfxs3')
 
-const s3                = new AWS.S3()
+const s3  = new AWS.S3()
 const cfg = {
   localpath: (process.env.LOCALPATH || '/tmp/pdf').replace(/\/+$/, ''),
   bucket: process.env.DESTBUCKET

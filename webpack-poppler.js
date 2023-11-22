@@ -1,5 +1,5 @@
-import fs from 'fs'
-import { spawnSync } from 'child_process'
+const fs = require('fs')
+const spawnSync = require('child_process').spawnSync;
 
 function WebpackPoppler(options) {
   this.options = options || {};

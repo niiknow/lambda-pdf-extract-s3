@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import got from 'got'
+import got from 'got-cjs'
 import urlParse from 'url'
 import mkdirp from 'mkdirp'
 
