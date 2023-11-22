@@ -59,7 +59,7 @@ export default async ( event, callback ) => {
 
     const rst = {
       success: true,
-      path: event.dest,
+      path: `${event.dest}${process.env.PREPENDPATH}`,
       files: rstFiles
     }
 

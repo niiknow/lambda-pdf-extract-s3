@@ -3,7 +3,6 @@ service: lambda-pdfxs3
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
   - serverless-webpack
-  - serverless-offline
 
 # serverless-webpack configuration
 # - this also help fix permission issue: see webpack-poppler
@@ -15,11 +14,11 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   memorySize: 512 # optional, in MB, default is 1024
   timeout: 900 # optional, in seconds, default is 6
   stage: ${opt:stage, 'dev'}
-  region: us-east-1
+  region: ${file(env.yml):${self:provider.stage}.REGION}
   iam:
     role:
       statements:
